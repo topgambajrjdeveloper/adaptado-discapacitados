@@ -1,0 +1,33 @@
+export class Pacientes {
+  uid?: string;
+  nombre?: string;
+  apellidos?: string;
+  dni?: string;
+  edad?: any;
+  nacimiento?: string;
+  domicilio?: string;
+  telefono?: number;
+  email?: string;
+  displayName?: string;
+  role?: string;
+  bono?: string;
+  sesiones?: number;
+  observaciones?: string;
+  operaciones?: string;
+  accidentes?: string;
+  lesiones?: string;
+  embarazosCesarias?: string;
+  diagnosticos?: string;
+  problemasViscerales?: string;
+  enfermedades?: string;
+  alergias?: string;
+  medicaciones?: string;
+  tratamientos?: string;
+  antecedentesFamiliares?: string;
+  frecuenciaFisioOste?: string;
+  deporte?: string;
+  trabaja?: string;
+  relacionesHallazgos?: string;
+  otrasOservaciones?: string;
+  userUid?: string;
+}

@@ -1,0 +1,36 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+    	return get(/databases/$(database)/documents/empleados/$(request.auth.uid)).data.role == 'administrador';
+    }
+
+    function isTrabajador() {
+    	return get(/databases/$(database)/documents/empleados/$(request.auth.uid)).data.role == 'trabajador';
+    }
+
+    function isclientes() {
+    	return get(/databases/$(database)/documents/empleados/$(request.auth.uid)).data.role == 'clientes';
+    }
+
+    match /empleados/{document} {
+    	allow read;
+      allow create: if administrador() == true;
+      allow update: if administrador() == true || isTrabajador() == true;
+      allow delete: if administrador() == true;
+    }
+
+    match /pacientes/{document} {
+    	allow read;
+      allow create: if administrador() == true || isTrabajador() == true || isclientes() == true;
+      allow update: if administrador() == true || isTrabajador() == true;
+      allow delete: if administrador() == true;
+
+      match /{allChildren=**} {
+      	allow read;
+        allow create, update, delete: if administrador() == true;
+        allow create, update, delete: if trabajador() == true;
+      }
+    }
+
+  }
+}

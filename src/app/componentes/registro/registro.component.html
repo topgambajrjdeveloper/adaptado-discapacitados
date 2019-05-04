@@ -1,0 +1,65 @@
+<div class="wrap-top-register">
+  <div class="col-12">
+    <div class="card" *ngIf="isAdmin">
+      <div class="card-body">
+        <h3 class="text-center">Registro</h3>
+        <form #formLogin="ngForm" (submit)="registroEmpleado()">
+          <div class="form-group">
+            <input
+              [(ngModel)]="email"
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              [(ngModel)]="password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block">
+            Registrar Empleado
+          </button>
+          <!--<div class="form-group">
+              <a routerLink="/user/register" class="form-control login-user">Are you new ?</a>
+            </div>-->
+          <br />
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">
+              &times;
+            </button>
+            <strong>Well done!</strong> You successfully read
+            <a href="#" class="alert-link">this important alert message</a>.
+          </div>
+          <div class="alert alert-dismissible alert-primary">
+            <button type="button" class="close" data-dismiss="alert">
+              &times;
+            </button>
+            <strong>Oh snap!</strong>
+            <a href="#" class="alert-link">Change a few things up</a> and try
+            submitting again.
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card col-md-6">
+        <div class="card-body">
+        </div>
+      </div>
+      <div class="card col-md-6">
+          <div class="card-body">
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
