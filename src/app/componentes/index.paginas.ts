@@ -12,6 +12,7 @@ export { CalendarioComponent } from './privado/calendario/calendario.component';
 export { ProfileComponent } from './privado/profile/profile.component';
 export { NuevoEmpleadoComponent } from './privado/nuevo-empleado/nuevo-empleado.component';
 export { EmpleadoComponent } from './privado/empleado/empleado.component';
+export { UserStatusComponent } from './privado/user-status/user-status.component';
 
 // Pacientes
 export { FichaPacienteComponent } from './paciente/ficha-paciente/ficha-paciente.component';
