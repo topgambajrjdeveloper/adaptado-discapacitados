@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   public isLogged: boolean = false;
-  public isAdmin: false;
+  public isAdmin: boolean = false;
 
   constructor( private afAuth: AngularFireAuth,
                private authService: AuthService,
@@ -24,7 +25,7 @@ export class NavbarComponent implements OnInit {
   // cerrar sesión
   onLogout() {
     this.authService.cerrarSesion();
-    this.router.navigate(['acceder']);
+    this.router.navigate(['/acceder']);
   }
 
   // comprobamos si el empleado se ha logueado

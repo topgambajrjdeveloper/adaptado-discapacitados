@@ -9,52 +9,59 @@
   </div>
   <div class="row">
     <div class="col-md-8 mb-4">
-      <div class="card-body">
-          <div class="">
-            <mat-form-field>
-              <input
-                matInput
-                (keyup)="applyFilter($event.target.value)"
-                placeholder="Buscar paciente"
-              />
-            </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Buscar paciente"
+        />
+      </mat-form-field>
 
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <!-- Position Column -->
-              <ng-container matColumnDef="uid">
-                <th mat-header-cell *matHeaderCellDef>uid.</th>
-                <td mat-cell *matCellDef="let element">{{ element.uid }}</td>
-              </ng-container>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort *ngFor="let paciente of pacientes | async">
+        <!-- photoUrl Column -->
+        <ng-container matColumnDef="photoUrl">
+          <th mat-header-cell *matHeaderCellDef>Avatar</th>
+          <td mat-cell *matCellDef="let element">{{ paciente.photoUrl }}</td>
+        </ng-container>
 
-              <!-- Name Column -->
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
-              </ng-container>
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ paciente.nombre }}</td>
+        </ng-container>
 
-              <!-- Weight Column -->
-              <ng-container matColumnDef="bono">
-                <th mat-header-cell *matHeaderCellDef>Tiene bono</th>
-                <td mat-cell *matCellDef="let element">{{ element.bono }}</td>
-              </ng-container>
+        <!-- Bono Column -->
+        <ng-container matColumnDef="bono">
+          <th mat-header-cell *matHeaderCellDef>Tiene bono</th>
+          <td mat-cell *matCellDef="let element">{{ paciente.bono }}</td>
+        </ng-container>
 
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="sesiones">
-                <th mat-header-cell *matHeaderCellDef>Ssiones</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.sesiones }}
-                </td>
-              </ng-container>
+        <!-- Sesiones Column -->
+        <ng-container matColumnDef="sesiones">
+          <th mat-header-cell *matHeaderCellDef>Sesiones</th>
+          <td mat-cell *matCellDef="let element">
+            {{ paciente.sesiones }}
+          </td>
+        </ng-container>
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button type="button" class="btn btn-info" (click)="onEdit(element)" >
+              Editar<mat-icon>edit</mat-icon>
+            </button> &nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="onDelete(element.id)">
+              Eliminar<mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            </table>
-          </div>
-          <div class="col-md-4">
-            <h4>Se mostrará una breve ficha del paciente</h4>
-          </div>
-        </div>
-      </div>
+</div>
+    <div class="col-md-4">
+<app-info-paciente-tabla></app-info-paciente-tabla>
     </div>
   </div>
-
+</div>

@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit {
 
   public email: '';
   public password: '';
-  public isAdmin: false;
+  public isAdmin: true;
   public empleado: Empleado;
   public noRegisterSocial: false;
 

@@ -1,15 +1,15 @@
-export class Pacientes {
-  uid?: number;
+export interface Pacientes {
+  id?: string;
   nombre?: string;
   apellidos?: string;
   dni?: string;
-  edad?: any;
+  edad: any;
   nacimiento?: string;
   domicilio?: string;
-  phoneNumber?: number;
+  phoneNumber: number;
   photoUrl?: string;
   email?: string;
-  bono?: number;
+  bono: number;
   sesiones?: string;
   observaciones?: string;
   operaciones?: string;

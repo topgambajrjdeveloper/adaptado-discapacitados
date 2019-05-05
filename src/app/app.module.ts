@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from './../environments/environment';
-import { FormsModule } from '@angular/forms';
+
 
 import { ServiciosModule } from './services/servicios/servicios.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponent,
   ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent,
-  NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent,
+  NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent, InfoPacienteTablaComponent,
   AccederComponent, RecuperarComponent, RegistroComponent, UserStatusComponent } from './componentes/index.paginas';
 
 @NgModule({
@@ -36,12 +38,15 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     FichaPacienteComponent,
     ListaPacienteComponent,
     NuevoPacienteComponent,
-    UserStatusComponent
+    UserStatusComponent,
+    InfoPacienteTablaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -53,5 +58,6 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
   ],
   providers: [ServiciosModule],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

@@ -1,38 +1,39 @@
 /* YEstilos generales de la app */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-.wrap-top{
+.wrap-top {
   margin-top: 100px;
 }
-.wrap-top-register{
+.wrap-top-register {
   margin-top: 0px;
 }
-.btn-primar{
+.btn-primar {
   background: #28b3b6;
 }
 
-.btn-submit{
+.btn-submit {
   width: 25%;
 }
 
-.btn{
+.btn {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #fff;
-  border-color: rgba(0,0,0,0,0,1);
+  border-color: rgba(0, 0, 0, 0, 0, 1);
 }
-.btn-facebook, .btn-google{
+.btn-facebook,
+.btn-google {
   width: 45%;
 }
 
-.btn-facebook{
+.btn-facebook {
   background: #3b5998;
   color: #fff;
 }
 
-.btn-google{
+.btn-google {
   background: #dd4b39;
   color: #fff;
 }
@@ -64,3 +65,4 @@ table {
   font-size: 14px;
   width: 100%;
 }
+

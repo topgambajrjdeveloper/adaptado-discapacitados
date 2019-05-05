@@ -1,62 +1,70 @@
 import { Injectable } from '@angular/core';
-// se importa el firestore
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/internal/Observable';
-
-// se importan los modelos
-import { Empleado } from '../models/empleado';
-import { Pacientes } from '../models/pacientes';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
+// se importan el modelo
+import { Pacientes } from '../models/pacientes';
+export interface PacientesId extends Pacientes { id: string; }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataApiService {
 
-  constructor( private afs: AngularFirestore) {
-    this.empleadoCollection = afs.collection<Empleado>('empleado');
-    this.empleadoCollection.valueChanges();
 
-    this.pacienteCollection = afs.collection<Pacientes>('pacientes');
-    this.pacienteCollection.valueChanges();
+  constructor( private afs: AngularFirestore) {
+    this.pacientesCollection = afs.collection<Pacientes>('paciente');
+    this.pacientes = this.pacientesCollection.valueChanges();
   }
+  private pacientesCollection: AngularFirestoreCollection<Pacientes>;
+  private pacientes: Observable<Pacientes[]>;
+  private pacienteDoc: AngularFirestoreDocument<Pacientes>;
+  private paciente: Observable<Pacientes>;
 
   // se crear la conexion para EMPLEADO firestore
-  private empleadoCollection: AngularFirestoreCollection<Empleado>;
-  private empleado: Observable<Empleado>[];
-
-
-  // se crear la conexion para PACIENTES firestore
-  private pacienteCollection: AngularFirestoreCollection<Pacientes>;
-  private pacientes: Observable<Pacientes>[];
-
-
-  // metodos CRUD para empleados
-  getAllEmpleado() {
-    return this.empleado;
-  }
-
-  addEmpleado() {}
-
-  actualizarEmpleado() {}
-
-  borrarEmpleado() {}
-
 
 
   // metodos CRUD para paciente
   getAllPaciente() {
-
+    this.pacientesCollection = this.afs.collection<Pacientes>('paciente');
+    return this.pacientes = this.pacientesCollection.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as Pacientes;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      }));
   }
 
-  addPaciente() {}
+  // metodo para ver cada paciente
+  getOnePaciente(id: string) {
+    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${id}`);
+    return this.paciente = this.pacienteDoc.snapshotChanges().pipe(map(action => {
+      if (action.payload.exists === false) {
+        return null;
+      } else {
+        const data = action.payload.data() as Pacientes;
+        data.id = action.payload.id;
+        return data;
+      }
+    }));
+  }
 
-  actualizarPaciente() {}
+  addPaciente(paciente: Pacientes): void {
+    this.pacientesCollection.add(paciente);
+  }
 
-  borrarPaciente() {}
+  actualizarPaciente( paciente: Pacientes ) {
+    const idPaciente = paciente.id;
+    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
+    this.pacienteDoc.update(paciente);
+  }
 
-
+  borrarPaciente(idPaciente: string): void {
+    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
+    this.pacienteDoc.delete();
+  }
 
 }

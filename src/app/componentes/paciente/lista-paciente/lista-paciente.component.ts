@@ -1,51 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import { DataApiService } from './../../../services/data-api.service';
-import { AngularFirestore, AngularFirestoreDocument,  } from '@angular/fire/firestore';
-import { MatTableDataSource } from '@angular/material';
-
-import { Pacientes } from './../../../models/pacientes';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Observable } from 'rxjs';
 
-export interface Pacientes {
-  nombre: string;
-  uid: number;
-  bono: number;
-  sesiones: string;
-}
+// se importan el modelo
+import { Pacientes } from '../../../models/pacientes';
 
-const ELEMENT_DATA: Pacientes[] = [
-  {uid: 1, nombre: 'Hydrogen', bono: 1, sesiones: 'Si'},
-  {uid: 2, nombre: 'Helium', bono: 4, sesiones: 'Si'},
-  {uid: 3, nombre: 'Lithium', bono: 6, sesiones: 'No'},
-  {uid: 4, nombre: 'Beryllium', bono: 9, sesiones: 'Be'},
-  {uid: 5, nombre: 'Boron', bono: 10, sesiones: 'B'},
-  {uid: 6, nombre: 'Carbon', bono: 12, sesiones: 'C'},
-  {uid: 7, nombre: 'Nitrogen', bono: 14, sesiones: 'N'},
-  {uid: 8, nombre: 'Oxygen', bono: 15, sesiones: 'O'},
-  {uid: 9, nombre: 'Fluorine', bono: 18, sesiones: 'F'},
-  {uid: 10, nombre: 'Neon', bono: 20, sesiones: 'Ne'},
-];
 
 @Component({
   selector: 'app-lista-paciente',
   templateUrl: './lista-paciente.component.html',
   styleUrls: ['./lista-paciente.component.css']
 })
-export class ListaPacienteComponent implements OnInit {
-  displayedColumns: string[] = ['uid', 'nombre', 'bono', 'sesiones'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
+  pacientes: Observable<Pacientes[]>;
 
-  constructor(private afs: AngularFirestore, private dataApi: DataApiService) {
+  displayedColumns: string[] = ['nombre', 'bono', 'sesiones', 'acciones'];
+  dataSource = new MatTableDataSource();
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  public pacienteI = [];
+  public paciente = '';
+
+  constructor( private dataApi: DataApiService) {
 
   }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
 
+    this.dataApi.getAllPaciente().subscribe(pacientes => {
+      console.log('PACIENTES', pacientes);
+      this.pacienteI = pacientes;
+
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onEdit(element: any) {
+    console.log('Editar', element);
+  }
+
+  onDelete(id: string) {
+    console.log('Elimiar', id);
+    this.dataApi.borrarPaciente(id);
   }
 
 }

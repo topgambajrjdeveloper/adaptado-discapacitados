@@ -1,10 +1,10 @@
 export interface Roles {
-  editor?: boolean;
+  trabajador?: boolean;
   admin?: boolean;
 }
 
 export interface Empleado {
-  uid?: string;
+  id?: string;
   email?: string;
   password?: string;
   photoUrl?: string;

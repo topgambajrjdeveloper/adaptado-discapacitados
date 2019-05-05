@@ -18,12 +18,12 @@
         routerLinkActive="active" routerLink="privado/citas"
         [routerLinkActiveOptions]="{exact:true}" alt="Citas con pacientes">Citas</a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
+      <li class="nav-item" *ngIf="isLogged >= !isAdmin" >
         <a class="nav-link"
         routerLinkActive="active" routerLink="privado/nuevo-empleado"
         [routerLinkActiveOptions]="{exact:true}" alt="nuevo empleado">Nuevo Empleado</a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
+      <li class="nav-item" *ngIf="isLogged != isAdmin">
         <a class="nav-link"
         routerLinkActive="active" routerLink="privado/empleado"
         [routerLinkActiveOptions]="{exact:true}" alt="ver empleados">Ver empleados</a>

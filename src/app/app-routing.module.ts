@@ -5,21 +5,23 @@ import { ErrorComponent, ConfiguracionComponent,
   ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent,
   NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent, AccederComponent,
   RecuperarComponent, RegistroComponent } from './componentes/index.paginas';
+import { AuthGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'acceder', component: AccederComponent},
   { path: 'recuperar-cuenta', component: RecuperarComponent},
   { path: 'privado/citas', component: CalendarioComponent},
-  { path: 'privado/mi-perfil', component: ProfileComponent },
-  { path: 'privado/empleado', component: EmpleadoComponent },
-  { path: 'privado/empleado:/nombre', component: EmpleadoComponent },
-  { path: 'privado/nuevo-empleado', component: NuevoEmpleadoComponent },
-  { path: 'paciente/ficha-paciente', component: FichaPacienteComponent },
-  { path: 'paciente/ficha-paciente:/apellido', component: FichaPacienteComponent },
-  { path: 'paciente/lista-paciente', component: ListaPacienteComponent },
-  { path: 'paciente/lista-paciente:/apellido', component: ListaPacienteComponent },
-  { path: 'paciente/nuevo-paciente', component: NuevoPacienteComponent },
+  { path: 'privado/mi-perfil', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'privado/empleado', component: EmpleadoComponent, canActivate: [AuthGuard] },
+  { path: 'privado/empleado/:id', component: EmpleadoComponent, canActivate: [AuthGuard] },
+  { path: 'privado/nuevo-empleado', component: NuevoEmpleadoComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/ficha-paciente', component: FichaPacienteComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/ficha-paciente/:id', component: FichaPacienteComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/lista-paciente', component: ListaPacienteComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/lista-paciente/:apellido', component: ListaPacienteComponent },
+  { path: 'paciente/nuevo-paciente', component: NuevoPacienteComponent, canActivate: [AuthGuard] },
   { path: 'configuracion', component: ConfiguracionComponent },
   { path: '**', component: ErrorComponent }
 ];
