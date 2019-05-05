@@ -1,5 +1,5 @@
 export class Pacientes {
-  uid?: string;
+  uid?: number;
   nombre?: string;
   apellidos?: string;
   dni?: string;
@@ -9,8 +9,8 @@ export class Pacientes {
   phoneNumber?: number;
   photoUrl?: string;
   email?: string;
-  bono?: string;
-  sesiones?: number;
+  bono?: number;
+  sesiones?: string;
   observaciones?: string;
   operaciones?: string;
   accidentes?: string;

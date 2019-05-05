@@ -1,4 +1,6 @@
 /* YEstilos generales de la app */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .wrap-top{
   margin-top: 100px;
 }
@@ -51,4 +53,14 @@ img {
 }
 .user-details h5 {
   margin: 15px 0 5px 0;
+}
+
+/* Tabla para listar pacientes */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }

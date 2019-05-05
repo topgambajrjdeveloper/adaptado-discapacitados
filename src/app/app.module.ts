@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 
 import { ServiciosModule } from './services/servicios/servicios.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularModule } from './material/angular/angular.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponent,
@@ -40,13 +42,14 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-
+    AngularModule
   ],
   providers: [ServiciosModule],
   bootstrap: [AppComponent]
