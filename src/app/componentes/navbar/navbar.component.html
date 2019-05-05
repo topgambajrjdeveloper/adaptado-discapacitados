@@ -14,43 +14,40 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" #idEmpleado
+        <a class="nav-link"
         routerLinkActive="active" routerLink="privado/citas"
         [routerLinkActiveOptions]="{exact:true}" alt="Citas con pacientes">Citas</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" #idAdmin
+        <a class="nav-link"
         routerLinkActive="active" routerLink="privado/nuevo-empleado"
         [routerLinkActiveOptions]="{exact:true}" alt="nuevo empleado">Nuevo Empleado</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" #idAdmin
+        <a class="nav-link"
         routerLinkActive="active" routerLink="privado/empleado"
         [routerLinkActiveOptions]="{exact:true}" alt="ver empleados">Ver empleados</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" #idEmpleado
+        <a class="nav-link"
         routerLinkActive="active" routerLink="paciente/nuevo-paciente"
         [routerLinkActiveOptions]="{exact:true}" alt="nuevo paciente">Nuevo Paciente</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" #idEmpleado
-        routerLinkActive="active" routerLink="paciente/ficha-paciente"
-        [routerLinkActiveOptions]="{exact:true}" alt="ficha pacientes">Ficha Pacientes</a>
+        <a class="nav-link"
+        routerLinkActive="active" routerLink="paciente/lista-paciente"
+        [routerLinkActiveOptions]="{exact:true}" alt="ficha pacientes">Lista Pacientes</a>
       </li>
-    </ul>
-    <!-- Menú para ver sin estar logueado -->
-    <ul class="navbar-nav mx-auto">
+      <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link"
+          routerLinkActive="active" routerLink="paciente/ficha-paciente"
+          [routerLinkActiveOptions]="{exact:true}" alt="ficha pacientes">Ficha Pacientes</a>
+        </li>
       <li class="nav-item" *ngIf="!isLogged">
         <a class="nav-link"
         routerLinkActive="active" routerLink="acceder"
         [routerLinkActiveOptions]="{exact:true}" alt="Acceder">Acceder</a>
       </li>
-      <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link"
-          routerLinkActive="active" routerLink="registro"
-          [routerLinkActiveOptions]="{exact:true}" alt="Registro">Registro</a>
-        </li>
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link"
         routerLinkActive="active" routerLink="privado/mi-perfil"

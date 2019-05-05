@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'privado/nuevo-empleado', component: NuevoEmpleadoComponent },
   { path: 'paciente/ficha-paciente', component: FichaPacienteComponent },
   { path: 'paciente/ficha-paciente:/apellido', component: FichaPacienteComponent },
+  { path: 'paciente/lista-paciente', component: ListaPacienteComponent },
   { path: 'paciente/lista-paciente:/apellido', component: ListaPacienteComponent },
   { path: 'paciente/nuevo-paciente', component: NuevoPacienteComponent },
   { path: 'configuracion', component: ConfiguracionComponent },

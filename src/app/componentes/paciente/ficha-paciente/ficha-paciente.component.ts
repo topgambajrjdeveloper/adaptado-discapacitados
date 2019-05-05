@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataApiService } from './../../../services/data-api.service';
 
 @Component({
   selector: 'app-ficha-paciente',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FichaPacienteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataApi: DataApiService) { }
 
   ngOnInit() {
   }

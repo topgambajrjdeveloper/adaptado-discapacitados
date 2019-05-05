@@ -9,6 +9,10 @@
   background: #28b3b6;
 }
 
+.btn-submit{
+  width: 25%;
+}
+
 .btn{
   width: 100%;
   white-space: nowrap;
