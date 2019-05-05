@@ -14,16 +14,16 @@ export interface Pacientes {
 }
 
 const ELEMENT_DATA: Pacientes[] = [
-  {uid: 1, nombre: 'Hydrogen', bono: 1.0079, sesiones: 'H'},
-  {uid: 2, nombre: 'Helium', bono: 4.0026, sesiones: 'He'},
-  {uid: 3, nombre: 'Lithium', bono: 6.941, sesiones: 'Li'},
-  {uid: 4, nombre: 'Beryllium', bono: 9.0122, sesiones: 'Be'},
-  {uid: 5, nombre: 'Boron', bono: 10.811, sesiones: 'B'},
-  {uid: 6, nombre: 'Carbon', bono: 12.0107, sesiones: 'C'},
-  {uid: 7, nombre: 'Nitrogen', bono: 14.0067, sesiones: 'N'},
-  {uid: 8, nombre: 'Oxygen', bono: 15.9994, sesiones: 'O'},
-  {uid: 9, nombre: 'Fluorine', bono: 18.9984, sesiones: 'F'},
-  {uid: 10, nombre: 'Neon', bono: 20.1797, sesiones: 'Ne'},
+  {uid: 1, nombre: 'Hydrogen', bono: 1, sesiones: 'Si'},
+  {uid: 2, nombre: 'Helium', bono: 4, sesiones: 'Si'},
+  {uid: 3, nombre: 'Lithium', bono: 6, sesiones: 'No'},
+  {uid: 4, nombre: 'Beryllium', bono: 9, sesiones: 'Be'},
+  {uid: 5, nombre: 'Boron', bono: 10, sesiones: 'B'},
+  {uid: 6, nombre: 'Carbon', bono: 12, sesiones: 'C'},
+  {uid: 7, nombre: 'Nitrogen', bono: 14, sesiones: 'N'},
+  {uid: 8, nombre: 'Oxygen', bono: 15, sesiones: 'O'},
+  {uid: 9, nombre: 'Fluorine', bono: 18, sesiones: 'F'},
+  {uid: 10, nombre: 'Neon', bono: 20, sesiones: 'Ne'},
 ];
 
 @Component({
