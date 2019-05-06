@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import { DataApiService } from './../../../services/data-api.service';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatSortModule } from '@angular/material';
 import { Observable } from 'rxjs';
 
 // se importan el modelo
@@ -16,7 +16,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   pacientes: Observable<Pacientes[]>;
 
-  displayedColumns: string[] = ['nombre', 'bono', 'sesiones', 'acciones'];
+  displayedColumns: string[] = ['photoUrl', 'nombre', 'dni', 'phoneNumber', 'acciones'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -31,11 +31,10 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-
     this.dataApi.getAllPaciente().subscribe(pacientes => {
       console.log('PACIENTES', pacientes);
       this.pacienteI = pacientes;
-
+      this.dataSource.data = pacientes;
     });
   }
 

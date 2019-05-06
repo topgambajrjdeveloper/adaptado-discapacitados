@@ -13,7 +13,7 @@ import {
     MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule,
     MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
     MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
-    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
+    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule, MatFormFieldModule
 } from '@angular/material';
 
 @NgModule({
@@ -24,7 +24,7 @@ import {
     MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule,
     MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
     MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
-    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule, PortalModule, ScrollingModule,
+    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule, PortalModule, ScrollingModule, MatFormFieldModule,
   ]
 })
 export class AngularModule { }
