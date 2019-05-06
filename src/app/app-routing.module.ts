@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ErrorComponent, ConfiguracionComponent,
-  ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent,
+  ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent, NotPermissionComponent,
   NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent, AccederComponent,
   RecuperarComponent, RegistroComponent } from './componentes/index.paginas';
 import { AuthGuard } from './guards/auth.guard';
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'paciente/lista-paciente/:apellido', component: ListaPacienteComponent },
   { path: 'paciente/nuevo-paciente', component: NuevoPacienteComponent, canActivate: [AuthGuard] },
   { path: 'configuracion', component: ConfiguracionComponent },
+  { path: 'sin-permiso', component: NotPermissionComponent },
   { path: '**', component: ErrorComponent }
 ];
 

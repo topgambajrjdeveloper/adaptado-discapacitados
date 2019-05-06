@@ -20,6 +20,7 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
   ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent,
   NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent, InfoPacienteTablaComponent,
   AccederComponent, RecuperarComponent, RegistroComponent, UserStatusComponent } from './componentes/index.paginas';
+import { NotPermissionComponent } from './componentes/not-permission/not-permission.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     ListaPacienteComponent,
     NuevoPacienteComponent,
     UserStatusComponent,
-    InfoPacienteTablaComponent
+    InfoPacienteTablaComponent,
+    NotPermissionComponent
   ],
   imports: [
     BrowserModule,

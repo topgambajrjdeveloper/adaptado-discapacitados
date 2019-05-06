@@ -6,6 +6,7 @@ export { NavbarComponent } from './navbar/navbar.component';
 export { RecuperarComponent } from './recuperar/recuperar.component';
 export { AccederComponent } from './acceder/acceder.component';
 export { RegistroComponent } from './registro/registro.component';
+export { NotPermissionComponent } from './not-permission/not-permission.component';
 
 // Privada
 export { CalendarioComponent } from './privado/calendario/calendario.component';

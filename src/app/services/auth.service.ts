@@ -1,5 +1,4 @@
-
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { map } from 'rxjs/operators';
@@ -12,8 +11,19 @@ import { Empleado } from './../models/empleado';
 })
 export class AuthService {
 
-
-  constructor( private afsAuth: AngularFireAuth, private afs: AngularFirestore) {}
+  userData: any; // para salvar el localStorage
+  constructor( private afsAuth: AngularFireAuth, private afs: AngularFirestore) {
+    this.afsAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        this.userData.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user'));
+      }
+    });
+  }
 
   // metodo para el registro de empleados, solo por parte del administrador
   registroEmpleados(email: string, password: string) {
@@ -21,8 +31,8 @@ export class AuthService {
       this.afsAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(userData => {
           resolve(userData),
-            this.actualizarEmpleado(userData.user)
-        }).catch(err => console.log(reject(err)))
+            this.actualizarEmpleado(userData.user);
+        }).catch(err => console.log(reject(err)));
     });
   }
 
@@ -49,7 +59,9 @@ export class AuthService {
 
   // cerrar sesión
   cerrarSesion() {
-    return this.afsAuth.auth.signOut();
+    return this.afsAuth.auth.signOut().then(() => {
+      localStorage.removeItem('user');
+    });
   }
 
   // se comprueba si esta logueado con cualquiera de los metodos
@@ -68,8 +80,8 @@ export class AuthService {
       roles: {
         trabajador: true
       }
-    }
-    return userRef.set(data, { merge: true })
+    };
+    return userRef.set(data, { merge: true });
   }
 
   isUserAdmin(userUid) {
