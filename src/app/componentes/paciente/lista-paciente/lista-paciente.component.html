@@ -1,14 +1,16 @@
 <div class="card col-md-12 wrap-top">
-  <div class="card-body">
+    <mat-card>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a routerLink="/privado/citas">Calendario</a>
       </li>
       <li class="breadcrumb-item active">Lista Pacientes</li>
     </ol>
-  </div>
+  </mat-card>
+  <br><br>
   <div class="row">
     <div class="col-md-8 mb-4">
+        <mat-card>
       <mat-form-field>
         <input
           matInput
@@ -17,43 +19,44 @@
         />
       </mat-form-field>
 
-      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="photoUrl">
            <mat-header-cell *matHeaderCellDef> Fotografía </mat-header-cell>
-          <mat-cell *matCellDef="let element"> <img mat-card-image src="{{ element.photoUrl }}" alt="Photo of a Shiba Inu"> </mat-cell>
+          <mat-cell *matCellDef="let element"> <img src="{{ element.photoUrl }}" height="50px;" height="50px;"> </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nombre">
-          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.nombre }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="dni">
-          <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.dni }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="phoneNumber">
-          <mat-header-cell *matHeaderCellDef> Teléfono movíl </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.phoneNumber }} </mat-cell>
+        <ng-container matColumnDef="diaConsulta">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Día consulta </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.diaConsulta }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="acciones">
           <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.acciones }} </mat-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-flat-button color="accent" (click)="onEdit(element)"><mat-icon>arrow_right_alt</mat-icon></button> &nbsp;
+            <button mat-flat-button color="warn" (click)="onDelete(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
         </ng-container>
+
+        <mat-divider></mat-divider>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
       <mat-paginator
         [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons
-      ></mat-paginator>
-
+        showFirstLastButtons>
+      </mat-paginator>
+    </mat-card>
 </div>
     <div class="col-md-4">
-<app-info-paciente-tabla></app-info-paciente-tabla>
+      <mat-card>
+        <app-info-paciente-tabla></app-info-paciente-tabla>
+    </mat-card>
     </div>
   </div>
 </div>

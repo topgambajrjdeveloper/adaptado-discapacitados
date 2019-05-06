@@ -29,5 +29,6 @@ export interface Pacientes {
   trabaja?: string;
   relacionesHallazgos?: string;
   otrasOservaciones?: string;
+  diaConsulta?: string;
   userUid?: string;
 }

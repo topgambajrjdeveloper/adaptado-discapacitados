@@ -16,7 +16,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   pacientes: Observable<Pacientes[]>;
 
-  displayedColumns: string[] = ['photoUrl', 'nombre', 'dni', 'phoneNumber', 'acciones'];
+  displayedColumns: string[] = ['photoUrl', 'nombre', 'diaConsulta',  'acciones'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -47,7 +47,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
   }
 
   onEdit(element: any) {
-    console.log('Editar', element);
+    this.dataApi.selected = element;
   }
 
   onDelete(id: string) {

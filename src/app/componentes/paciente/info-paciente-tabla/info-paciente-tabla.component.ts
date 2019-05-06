@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataApiService } from './../../../services/data-api.service';
+
 
 @Component({
   selector: 'app-info-paciente-tabla',
@@ -8,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class InfoPacienteTablaComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(public dataApi: DataApiService) { }
 
 
   ngOnInit() {}
+
+  onSaveForm() {
+
+  }
+
+  onNewForm() {
+
+  }
 
 }

@@ -1,1 +1,13 @@
-
+<mat-card container>
+  <mat-form-field>
+    <input matInput placeholder="photoUrl" name="photoUrl" [(ngModel)]="this.dataApi.selected.photoUrl">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="nombre" name="nombre" [(ngModel)]="this.dataApi.selected.nombre">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="diaConsulta" type="date" name="diaConsulta" [(ngModel)]="this.dataApi.selected.diaConsulta">
+  </mat-form-field>
+  <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="onSaveForm()" > <mat-icon>save</mat-icon> </button>
+  <button mat-flat-button color="accent" class="btn-lg btn-block" (click)="onNewForm()"> <mat-icon>created</mat-icon> </button>
+</mat-card>

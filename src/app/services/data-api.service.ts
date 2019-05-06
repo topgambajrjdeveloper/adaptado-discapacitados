@@ -12,6 +12,39 @@ export interface PacientesId extends Pacientes { id: string; }
 })
 export class DataApiService {
 
+public selected = {
+  id: null,
+  nombre: '',
+  apellidos: '',
+  dni: '',
+  edad: '',
+  nacimiento: '',
+  domicilio: '',
+  phoneNumber: '',
+  photoUrl: '',
+  email: '',
+  bono: '',
+  sesiones: '',
+  observaciones: '',
+  operaciones: '',
+  accidentes: '',
+  lesiones: '',
+  sexo: '',
+  embarazosCesarias: '',
+  diagnosticos: '',
+  problemasViscerales: '',
+  enfermedades: '',
+  alergias: '',
+  medicaciones: '',
+  tratamientos: '',
+  antecedentesFamiliares: '',
+  frecuenciaFisioOste: '',
+  deporte: '',
+  trabaja: '',
+  relacionesHallazgos: '',
+  otrasOservaciones: '',
+  diaConsulta: ''
+};
 
   constructor( private afs: AngularFirestore) {
     this.pacientesCollection = afs.collection<Pacientes>('paciente');
@@ -38,6 +71,7 @@ export class DataApiService {
       }));
   }
 
+
   // metodo para ver cada paciente
   getOnePaciente(id: string) {
     this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${id}`);
@@ -56,13 +90,15 @@ export class DataApiService {
     this.pacientesCollection.add(paciente);
   }
 
+  // actualizar el paciente
   actualizarPaciente( paciente: Pacientes ) {
-    const idPaciente = paciente.id;
+    const idPaciente = '';
     this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
     this.pacienteDoc.update(paciente);
   }
 
-  borrarPaciente(idPaciente: string): void {
+  // borrar el paciente
+  borrarPaciente( idPaciente: string): void {
     this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
     this.pacienteDoc.delete();
   }
