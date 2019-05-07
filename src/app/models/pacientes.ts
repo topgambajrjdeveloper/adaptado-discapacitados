@@ -3,13 +3,13 @@ export interface Pacientes {
   nombre?: string;
   apellidos?: string;
   dni?: string;
-  edad: any;
+  edad?: string;
   nacimiento?: string;
   domicilio?: string;
-  phoneNumber: number;
+  phoneNumber: string;
   photoUrl?: string;
   email?: string;
-  bono: number;
+  bono: string;
   sesiones?: string;
   observaciones?: string;
   operaciones?: string;
@@ -30,5 +30,6 @@ export interface Pacientes {
   relacionesHallazgos?: string;
   otrasOservaciones?: string;
   diaConsulta?: string;
+  horaConsulta?: string;
   userUid?: string;
 }

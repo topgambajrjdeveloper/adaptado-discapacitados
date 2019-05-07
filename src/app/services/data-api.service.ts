@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 // se importan el modelo
 import { Pacientes } from '../models/pacientes';
-export interface PacientesId extends Pacientes { id: string; }
+export interface Pacientes extends Pacientes { id: string; }
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,9 @@ public selected = {
   trabaja: '',
   relacionesHallazgos: '',
   otrasOservaciones: '',
-  diaConsulta: ''
+  diaConsulta: '',
+  horaConsulta: '',
+  userUid: ''
 };
 
   constructor( private afs: AngularFirestore) {
@@ -87,14 +89,12 @@ public selected = {
   }
 
   addPaciente(paciente: Pacientes): void {
-    this.pacientesCollection.add(paciente);
+   this.pacientesCollection.add(paciente);
   }
 
   // actualizar el paciente
   actualizarPaciente( paciente: Pacientes ) {
-    const idPaciente = '';
-    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
-    this.pacienteDoc.update(paciente);
+    return this.pacientesCollection.doc(paciente.id).update(paciente);
   }
 
   // borrar el paciente

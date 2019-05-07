@@ -1,6 +1,7 @@
 export interface Roles {
-  trabajador?: boolean;
   admin?: boolean;
+  recepcionista?: string;
+  trabajador?: boolean;
 }
 
 export interface Empleado {
@@ -11,6 +12,8 @@ export interface Empleado {
   nombre?: string;
   apellidos?: string;
   phoneNumber?: string;
+  numeroEmpleado?: string;
+  tipoEspecialista?: string;
   domicilio?: string;
   edad?: any;
   discapacidad?: string;

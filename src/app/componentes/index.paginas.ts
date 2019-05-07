@@ -20,5 +20,4 @@ export { UserStatusComponent } from './privado/user-status/user-status.component
 export { FichaPacienteComponent } from './paciente/ficha-paciente/ficha-paciente.component';
 export { NuevoPacienteComponent } from './paciente/nuevo-paciente/nuevo-paciente.component';
 export { ListaPacienteComponent } from './paciente/lista-paciente/lista-paciente.component';
-export { InfoPacienteTablaComponent } from './paciente/info-paciente-tabla/info-paciente-tabla.component';
 export { FormComponent } from './paciente/form/form.component';

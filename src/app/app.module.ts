@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponent, FormComponent,
   ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent, NotPermissionComponent,
-  NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent, InfoPacienteTablaComponent,
+  NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent,
   AccederComponent, RecuperarComponent, RegistroComponent, UserStatusComponent } from './componentes/index.paginas';
 
 
@@ -40,7 +40,6 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     ListaPacienteComponent,
     NuevoPacienteComponent,
     UserStatusComponent,
-    InfoPacienteTablaComponent,
     NotPermissionComponent,
     FormComponent
   ],
@@ -59,8 +58,10 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     AngularFireStorageModule,
     AngularModule
   ],
-  providers: [ServiciosModule],
-  bootstrap: [AppComponent]
-
+  providers: [
+    ServiciosModule
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [FormComponent]
 })
 export class AppModule { }

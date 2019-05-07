@@ -3,6 +3,8 @@ import { DataApiService } from './../../../services/data-api.service';
 import { MatPaginator, MatTableDataSource, MatSort, MatSortModule } from '@angular/material';
 import { Observable } from 'rxjs';
 
+
+
 // se importan el modelo
 import { Pacientes } from '../../../models/pacientes';
 
@@ -16,7 +18,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   pacientes: Observable<Pacientes[]>;
 
-  displayedColumns: string[] = ['photoUrl', 'nombre', 'diaConsulta',  'acciones'];
+  displayedColumns: string[] = ['nombre', 'apellidos', 'diaConsulta', 'horaConsulta', 'acciones' ];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -32,7 +34,6 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataApi.getAllPaciente().subscribe(pacientes => {
-      console.log('PACIENTES', pacientes);
       this.pacienteI = pacientes;
       this.dataSource.data = pacientes;
     });
@@ -47,12 +48,32 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
   }
 
   onEdit(element: any) {
-    this.dataApi.selected = element;
+    if (element) {
+      this.dataApi.selected = element;
+    }
   }
 
   onDelete(id: string) {
-    console.log('Elimiar', id);
     this.dataApi.borrarPaciente(id);
   }
+
+  onSaveForm() {
+    if (this.dataApi.selected.id == null) {
+      const nuevoPaciente = {
+        nombre: this.dataApi.selected.nombre,
+        apellidos: this.dataApi.selected.apellidos,
+        diaConsulta: this.dataApi.selected.diaConsulta,
+        horaConsulta: this.dataApi.selected.horaConsulta
+      };
+      this.dataApi.addPaciente(this.dataApi.selected);
+    } else {
+      this.dataApi.actualizarPaciente(this.dataApi.selected);
+    }
+
+  }
+
+
+
+
 
 }
