@@ -18,8 +18,7 @@
           placeholder="Buscar paciente, (Nombre, Apellidos, etc...)"
         />
       </mat-form-field>
-
-      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <mat-table class="container" [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="nombre">
            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
@@ -67,3 +66,4 @@
     </div>
   </div>
 </div>
+

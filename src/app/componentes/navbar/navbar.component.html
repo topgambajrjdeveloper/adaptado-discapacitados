@@ -43,6 +43,11 @@
         routerLinkActive="active" routerLink="acceder"
         [routerLinkActiveOptions]="{exact:true}" alt="Acceder">Acceder</a>
       </li>
+      <li class="nav-item" *ngIf="!isLogged">
+        <a class="nav-link"
+        routerLinkActive="active" routerLink="registro"
+        [routerLinkActiveOptions]="{exact:true}" alt="Acceder">Registro</a>
+      </li>
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link"
         routerLinkActive="active" routerLink="privado/mi-perfil"

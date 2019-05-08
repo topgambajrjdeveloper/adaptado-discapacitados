@@ -15,7 +15,7 @@ export interface Empleado {
   numeroEmpleado?: string;
   tipoEspecialista?: string;
   domicilio?: string;
-  edad?: any;
+  edad?: string;
   discapacidad?: string;
   dni?: string;
   displayName?: string;

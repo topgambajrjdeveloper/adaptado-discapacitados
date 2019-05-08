@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-recuperar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecuperarComponent implements OnInit {
 
-  constructor() { }
+  public email: '';
+  private alert;
+
+  constructor(private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
+
+  // registro de usuarios con firebase
+  recoveryEmpleado(email: string) {}
 
 }

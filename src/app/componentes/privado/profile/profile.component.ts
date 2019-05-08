@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
     roles: {}
   };
   public providerId = 'null';
+
   ngOnInit() {
     this.authService.isAuth().subscribe(empleado => {
       if (empleado) {
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit {
         this.empleado.photoUrl = empleado.photoURL;
         this.providerId = empleado.providerData[0].providerId;
       }
-    })
+    });
   }
 
 }

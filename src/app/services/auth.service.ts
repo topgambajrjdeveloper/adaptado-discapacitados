@@ -33,6 +33,10 @@ export class AuthService {
         }).catch(err => console.log(reject(err)));
     });
   }
+  // Verificar el correo electronico
+  verifyEmail(): Promise<void> {
+    return this.afsAuth.auth.currentUser.sendEmailVerification();
+  }
 
 
   // metodo para el acceso de los empleados
@@ -42,6 +46,11 @@ export class AuthService {
         .then(userData => resolve(userData),
         err => reject(err));
     });
+  }
+
+  // recuperar constraseña Empleado
+  recoveryEmpleado(email: string): Promise<void> {
+    return this.afsAuth.auth.sendPasswordResetEmail(email);
   }
 
   // metodos async para el acceso de los clientes // no habilitados por el momento
@@ -70,17 +79,14 @@ export class AuthService {
 
 
   // metodo privado para actualizar los usuarios o empleados
-  actualizarEmpleado(empleado) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`mi-perfil/${empleado.id}`);
-    const data: Empleado = {
-      id: empleado.id,
-      email: empleado.email,
-      roles: {
-        trabajador: true
-      }
-    };
-    return userRef.set(data, { merge: true });
-  }
+  actualizarEmpleado(email?, photoUrl?): Promise<void> {
+    return this.afsAuth.auth.currentUser.updateProfile({
+    displayName:
+    (email) ? email : this.afsAuth.auth.currentUser.displayName,
+    photoURL:
+    (photoUrl) ? photoUrl : this.afsAuth.auth.currentUser.photoURL
+    });
+    }
 
   isUserAdmin(userUid) {
     return this.afs.doc<Empleado>(`mi-perfil/${userUid}`).valueChanges();

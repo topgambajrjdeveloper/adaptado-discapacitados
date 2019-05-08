@@ -1,6 +1,7 @@
 /* YEstilos generales de la app */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .wrap-top {
   margin-top: 100px;
 }
@@ -64,18 +65,21 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+  margin-left: 2%;
 }
 
-
-.example-card {
-  max-width: 400px;
+.container{
+  display: flex;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+/* Registro de empleados*/
+input.ng-touched.ng-invalid{
+  border-color: #dc3545;
 }
 
-.example-stretched-tabs {
-  max-width: 800px;
+div.validation-error{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
 }

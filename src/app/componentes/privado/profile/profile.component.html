@@ -7,7 +7,7 @@
         <li class="breadcrumb-item active">Mí Perfíl</li>
       </ol>
     </div>
-<div class="container bootstrap snippet">
+<mat-card class="container bootstrap snippet">
   <div class="row">
     <div class="col-sm-3">
       <!--left col-->
@@ -55,7 +55,7 @@
             <div class="form-group">
               <div class="col-xs-6">
                 <label for="first_name"><h4>Nombre</h4></label>
-                <h5 *ngIf="providerId != 'password'">{{ empleado.displayName }}</h5>
+                <h5 *ngIf="providerId != 'password'">{{ empleado.nombre }}</h5>
               </div>
             </div>
             <div class="form-group">
@@ -80,8 +80,29 @@
             </div>
             <div class="form-group">
               <div class="col-xs-6">
-                <label for="email"><h4>Domicilio</h4></label>
+                <label for="domicilio"><h4>Domicilio</h4></label>
                 <h5 *ngIf="providerId != 'password'">{{ empleado.domicilio }}</h5>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="numeroEmpleado"><h4>Nun. Empleado</h4></label>
+                <h5 *ngIf="providerId != 'password'">{{ empleado.numeroEmpleado }}</h5>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="dni"><h4>DNI</h4></label>
+                <h5 *ngIf="providerId != 'password'">{{ empleado.dni }}</h5>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="roles"><h4></h4></label>
+                <h5 *ngIf="providerId != 'password'">{{ empleado.roles }}</h5>
               </div>
             </div>
           </form>
@@ -94,5 +115,5 @@
     <!--/col-9-->
   </div>
   <!--/row-->
-</div>
+</mat-card>
 </div>

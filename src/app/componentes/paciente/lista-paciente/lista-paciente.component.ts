@@ -18,7 +18,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   pacientes: Observable<Pacientes[]>;
 
-  displayedColumns: string[] = ['nombre', 'apellidos', 'diaConsulta', 'horaConsulta', 'acciones' ];
+  displayedColumns: string[] = ['nombre', 'apellidos', 'diaConsulta', 'horaConsulta', 'acciones'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
