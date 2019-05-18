@@ -83,3 +83,12 @@ div.validation-error{
   font-size: 80%;
   color: #dc3545;
 }
+.body {
+ background-color: #cac6c6;
+}
+
+.img-nav{
+  width: 40px;
+  height: 40px;
+}
+

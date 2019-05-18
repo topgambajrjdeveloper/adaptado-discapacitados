@@ -9,7 +9,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from './../environments/environment';
 
-
 import { ServiciosModule } from './services/servicios/servicios.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularModule } from './material/angular/angular.module';
@@ -20,6 +19,7 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
   ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent, NotPermissionComponent,
   NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent,
   AccederComponent, RecuperarComponent, RegistroComponent, UserStatusComponent } from './componentes/index.paginas';
+import { PhotoUrlComponent } from './componentes/paciente/photo-url/photo-url.component';
 
 
 @NgModule({
@@ -41,7 +41,8 @@ import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponen
     NuevoPacienteComponent,
     UserStatusComponent,
     NotPermissionComponent,
-    FormComponent
+    FormComponent,
+    PhotoUrlComponent
   ],
   imports: [
     BrowserModule,

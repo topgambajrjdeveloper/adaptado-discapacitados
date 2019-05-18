@@ -3,6 +3,8 @@ import { DataApiService } from './../../../services/data-api.service';
 import { MatPaginator, MatTableDataSource, MatSort, MatSortModule } from '@angular/material';
 import { Observable } from 'rxjs';
 
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 
 // se importan el modelo
@@ -17,6 +19,7 @@ import { Pacientes } from '../../../models/pacientes';
 export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   pacientes: Observable<Pacientes[]>;
+  idPaciente: string;
 
   displayedColumns: string[] = ['nombre', 'apellidos', 'diaConsulta', 'horaConsulta', 'acciones'];
   dataSource = new MatTableDataSource();
@@ -27,12 +30,15 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
   public pacienteI = [];
   public paciente = '';
 
-  constructor( private dataApi: DataApiService) {
+  constructor( private dataApi: DataApiService,
+               private route: ActivatedRoute,
+               private router: Router) {
 
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.idPaciente = this.route.snapshot.params[' id '];
     this.dataApi.getAllPaciente().subscribe(pacientes => {
       this.pacienteI = pacientes;
       this.dataSource.data = pacientes;
@@ -49,7 +55,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   onEdit(element: any) {
     if (element) {
-      this.dataApi.selected = element;
+      this.dataApi.selectedPaciente = element;
     }
   }
 
@@ -57,17 +63,22 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
     this.dataApi.borrarPaciente(id);
   }
 
+  onView(id: string) {
+    this.dataApi.getOnePaciente(id);
+    //this.router.navigate();
+  }
+
   onSaveForm() {
-    if (this.dataApi.selected.id == null) {
+    if (this.dataApi.selectedPaciente.id == null) {
       const nuevoPaciente = {
-        nombre: this.dataApi.selected.nombre,
-        apellidos: this.dataApi.selected.apellidos,
-        diaConsulta: this.dataApi.selected.diaConsulta,
-        horaConsulta: this.dataApi.selected.horaConsulta
+        nombre: this.dataApi.selectedPaciente.nombre,
+        apellidos: this.dataApi.selectedPaciente.apellidos,
+        diaConsulta: this.dataApi.selectedPaciente.diaConsulta,
+        horaConsulta: this.dataApi.selectedPaciente.horaConsulta
       };
-      this.dataApi.addPaciente(this.dataApi.selected);
+      this.dataApi.addPaciente(this.dataApi.selectedPaciente.id);
     } else {
-      this.dataApi.actualizarPaciente(this.dataApi.selected);
+      this.dataApi.actualizarPaciente(this.dataApi.selectedPaciente.id);
     }
 
   }

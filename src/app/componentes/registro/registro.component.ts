@@ -72,7 +72,7 @@ export class RegistroComponent implements OnInit {
               displayName: '',
               photoURL: this.inputImageUser.nativeElement.value
             }).then(() => {
-              this.router.navigate(['acceder']);
+              this.router.navigate(['privado/mi-perfil']);
             }).catch((error) => console.log('error', error));
           }
         });

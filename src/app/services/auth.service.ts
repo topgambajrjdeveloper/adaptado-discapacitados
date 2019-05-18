@@ -73,7 +73,7 @@ export class AuthService {
 
   // se comprueba si esta logueado con cualquiera de los metodos
   isAuth() {
-// tslint:disable-next-line: no-shadowed-variable
+  // tslint:disable-next-line: no-shadowed-variable
       return this.afsAuth.authState.pipe(map( auth => auth));
   }
 

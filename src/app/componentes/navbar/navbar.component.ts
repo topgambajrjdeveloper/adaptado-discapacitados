@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
 
   public isLogged: boolean = false;
   public isAdmin: boolean = false;
+  public userNombre: string;
+  public photoUrl: string;
+  public userId: string;
 
   constructor( private afAuth: AngularFireAuth,
                private authService: AuthService,
@@ -32,10 +35,12 @@ export class NavbarComponent implements OnInit {
   getCurrentUser() {
     this.authService.isAuth().subscribe(auth => {
       if (auth) {
-        console.log('user logged');
         this.isLogged = true;
+        this.isAdmin = true;
+        this.userNombre = auth.displayName;
+        this.photoUrl = auth.photoURL;
+        this.userId = auth.uid;
       } else {
-        console.log('NOT user logged');
         this.isLogged = false;
       }
     });

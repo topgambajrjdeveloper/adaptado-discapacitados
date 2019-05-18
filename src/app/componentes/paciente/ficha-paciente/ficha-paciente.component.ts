@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataApiService } from './../../../services/data-api.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-ficha-paciente',
@@ -8,9 +9,15 @@ import { DataApiService } from './../../../services/data-api.service';
 })
 export class FichaPacienteComponent implements OnInit {
 
-  constructor(private dataApi: DataApiService) { }
+  idPaciente: string;
+
+  constructor(private dataApi: DataApiService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+  // tslint:disable-next-line: no-string-literal
+  this.idPaciente = this.route.snapshot.params['id'];
   }
 
 }

@@ -41,10 +41,11 @@
         </ng-container>
 
         <ng-container matColumnDef="acciones">
-          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> Acciones &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button mat-flat-button color="warn" > Crear </button> </mat-header-cell>
+
           <mat-cell *matCellDef="let element">
              &nbsp;
-            <button mat-flat-button color="accent" (click)="onEdit(element)"><mat-icon>arrow_right_alt</mat-icon></button> &nbsp;
+            <button mat-flat-button color="accent"(click)="onView(element.id)"><mat-icon>visibility</mat-icon></button> &nbsp;
             <button mat-flat-button color="warn" (click)="onDelete(element.id)"> <mat-icon>delete</mat-icon> </button> </mat-cell>
         </ng-container>
 

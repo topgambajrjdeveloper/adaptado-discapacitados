@@ -13,32 +13,26 @@ export class FormComponent implements OnInit {
   }
 
   onSaveForm() {
-    if (this.dataApi.selected.id == null) {
+    if (this.dataApi.selectedPaciente.id == null) {
       const nuevoPaciente = {
-        nombre: this.dataApi.selected.nombre,
-        apellidos: this.dataApi.selected.apellidos,
-        diaConsulta: this.dataApi.selected.diaConsulta,
-        horaConsulta: this.dataApi.selected.horaConsulta
+        nombre: this.dataApi.selectedPaciente.nombre,
+        apellidos: this.dataApi.selectedPaciente.apellidos,
+        diaConsulta: this.dataApi.selectedPaciente.diaConsulta,
+        horaConsulta: this.dataApi.selectedPaciente.horaConsulta
       };
-      this.dataApi.addPaciente(this.dataApi.selected);
+      this.dataApi.addPaciente(this.dataApi.selectedPaciente.id);
     } else {
-      this.dataApi.actualizarPaciente(this.dataApi.selected);
+      this.dataApi.actualizarPaciente(this.dataApi.selectedPaciente.id);
     }
   }
 
   onReset(): void {
-    this.dataApi.selected.nombre = '';
-    this.dataApi.selected.apellidos = '';
-    this.dataApi.selected.diaConsulta = '';
-    this.dataApi.selected.horaConsulta = '';
-    this.dataApi.selected = null;
+    this.dataApi.selectedPaciente.nombre = '';
+    this.dataApi.selectedPaciente.apellidos = '';
+    this.dataApi.selectedPaciente.diaConsulta = '';
+    this.dataApi.selectedPaciente.horaConsulta = '';
+    this.dataApi.selectedPaciente = null;
   }
-
-
-
-
-
-
 
 
 

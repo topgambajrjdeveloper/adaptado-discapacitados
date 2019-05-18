@@ -1,19 +1,149 @@
-<div class="create-page">
-  <nav aria-label="breadcrumb">
+<div class="card col-md-12 wrap-top">
+  <mat-card>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item" aria-current="page" [routerLink]="['/privado/citas']">Calendario
-        </li>
-      <li class="breadcrumb-item active" aria-current="page">Nuevo Empleado</li>
+      <li class="breadcrumb-item">
+        <a routerLink="/privado/citas">Calendario</a>
+      </li>
+      <li class="breadcrumb-item active">Nuevo Empleado</li>
     </ol>
-  </nav>
-  <div class="page-content">
-    <div class="row">
-
-      <div class="col col-md-8">
-
-
-
-      </div>
-    </div>
-  </div>
+  </mat-card>
+  <br /><br />
+  <mat-card>
+    <mat-card>
+      <form>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Nombre"
+              id="nombre"
+              name="nombre"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Apellidos"
+              id="apellidos"
+              name="apellidos"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Teléfono"
+              id="phoneNumber"
+              name="phoneNumber"
+              type="number"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Número de empleado"
+              id="numeroEmpleado"
+              name="numeroEmpleado"
+              type="number"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email"
+              id="email"
+              name="email"
+              type="email"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Password"
+              id="password"
+              name="password"
+              type="password"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Tipo de especialista"
+              id="tipoEspecialista"
+              name="tipoEspecialista"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Edad del trabajador"
+              id="edad"
+              name="edad"
+              type="number"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Tipo de discapacidad"
+              id="discapacidad"
+              name="discapacidad"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Domicilio de trabajador"
+              id="domicilio"
+              name="domicilio"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="DNI del trabajador"
+              id="dni"
+              name="dni"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-10 form">
+          <mat-form-field>
+            <mat-label>Tipo de usuario</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let rol of rol" [value]="rol.value">
+                {{ rol.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button class="btn-lg btn-block" mat-flat-button color="primary"> Guardar empleado </button>
+      </form>
+    </mat-card>
+  </mat-card>
 </div>

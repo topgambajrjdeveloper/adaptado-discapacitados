@@ -1,16 +1,16 @@
 <mat-card class="form">
-    <mat-card-title>Paciente</mat-card-title>
+    <mat-card-title>Nuevo Paciente</mat-card-title>
   <mat-form-field>
-    <input matInput type="text" placeholder="Nombre del paciente" name="nombre" [(ngModel)]="this.dataApi.selected.nombre" />
+    <input matInput type="text" placeholder="Nombre del paciente" name="nombre" [(ngModel)]="this.dataApi.selectedPaciente.nombre" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Apellidos del paciente" name="apellidos" [(ngModel)]="this.dataApi.selected.apellidos" />
+    <input matInput type="text" placeholder="Apellidos del paciente" name="apellidos" [(ngModel)]="this.dataApi.selectedPaciente.apellidos" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="date" placeholder="Dia para consulta" name="diaConsulta" [(ngModel)]="this.dataApi.selected.diaConsulta"/>
+    <input matInput type="date" placeholder="Dia para consulta" name="diaConsulta" [(ngModel)]="this.dataApi.selectedPaciente.diaConsulta"/>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="time" placeholder="Hora para consulta" name="horaConsulta" [(ngModel)]="this.dataApi.selected.horaConsulta" />
+    <input matInput type="time" placeholder="Hora para consulta" name="horaConsulta" [(ngModel)]="this.dataApi.selectedPaciente.horaConsulta" />
   </mat-form-field>
-  <button class="btn-lg btn-block" mat-flat-button color="primary" (click)="onSaveForm()"> <mat-icon>add</mat-icon> </button>
+  <button class="btn-lg btn-block" mat-flat-button color="primary" (click)="onSaveForm()"> Actualizar</button>
 </mat-card>

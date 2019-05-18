@@ -1,3 +1,9 @@
+export interface Bonos {
+  individual?: boolean;
+  discapacitado?: string;
+  privado?: boolean;
+}
+
 export interface Pacientes {
   id?: string;
   nombre?: string;
@@ -9,7 +15,7 @@ export interface Pacientes {
   phoneNumber: string;
   photoUrl?: string;
   email?: string;
-  bono: string;
+  bono: Bonos;
   sesiones?: string;
   observaciones?: string;
   operaciones?: string;
@@ -28,7 +34,7 @@ export interface Pacientes {
   deporte?: string;
   trabaja?: string;
   relacionesHallazgos?: string;
-  otrasOservaciones?: string;
+  otrasObservaciones?: string;
   diaConsulta?: string;
   horaConsulta?: string;
   userUid?: string;
