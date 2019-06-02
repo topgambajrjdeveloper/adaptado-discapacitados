@@ -1,13 +1,8 @@
-export interface Bonos {
-  individual?: boolean;
-  discapacitado?: string;
-  privado?: boolean;
-}
 
 export interface Pacientes {
+  // datos personales
   id?: string;
-  nombre?: string;
-  apellidos?: string;
+  fullname?: string;
   dni?: string;
   edad?: string;
   nacimiento?: string;
@@ -15,13 +10,16 @@ export interface Pacientes {
   phoneNumber: string;
   photoUrl?: string;
   email?: string;
-  bono: Bonos;
+  bono?: string;
+  sexo?: string;
   sesiones?: string;
+  fechaAltaPaciente?: any;
+  // otros datos
   observaciones?: string;
   operaciones?: string;
   accidentes?: string;
   lesiones?: string;
-  sexo?: string;
+  colectivo?: string;
   embarazosCesarias?: string;
   diagnosticos?: string;
   problemasViscerales?: string;
@@ -34,8 +32,10 @@ export interface Pacientes {
   deporte?: string;
   trabaja?: string;
   relacionesHallazgos?: string;
-  otrasObservaciones?: string;
+  otrasOservaciones?: string;
   diaConsulta?: string;
   horaConsulta?: string;
+  timestamp?: any;
+  userNombre?: string;
   userUid?: string;
 }

@@ -1,41 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { DataApiService } from './../../../services/data-api.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataApiService } from '../../../services/data-api.service';
+import { Pacientes } from '../../../models/index.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
-/** Error cuando el control no válido está sucio, tocado o enviado. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-/** Control para el bono */
-export interface Bono {
-  value: string;
-  viewValue: string;
-}
-
-export interface Sesion {
-  value: string;
-  viewValue: string;
-}
-
-export interface Sexo {
-  value: string;
-  viewValue: string;
-}
-
-export interface Deporte {
-  value: string;
-  viewValue: string;
-}
-
-export interface Trabaja {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-nuevo-paciente',
@@ -43,49 +12,67 @@ export interface Trabaja {
   styleUrls: ['./nuevo-paciente.component.css']
 })
 export class NuevoPacienteComponent implements OnInit {
+
   idPaciente: string;
+  paciente: Pacientes = {
+    id: '',
+    fullname: '',
+    dni: '',
+    edad: '',
+    nacimiento: '',
+    domicilio: '',
+    phoneNumber: '',
+    photoUrl: '',
+    email: '',
+    bono: '',
+    sexo: '',
+    sesiones: '',
+    fechaAltaPaciente: '',
+    // otros datos
+    observaciones: '',
+    operaciones: '',
+    accidentes: '',
+    lesiones: '',
+    colectivo: '',
+    embarazosCesarias: '',
+    diagnosticos: '',
+    problemasViscerales: '',
+    enfermedades: '',
+    alergias: '',
+    medicaciones: '',
+    tratamientos: '',
+    antecedentesFamiliares: '',
+    frecuenciaFisioOste: '',
+    deporte: '',
+    trabaja: '',
+    relacionesHallazgos: '',
+    otrasOservaciones: '',
+    diaConsulta: '',
+    horaConsulta: '',
+    timestamp: '',
+    userNombre: '',
+    userUid: ''
+  };
 
-  bonos: Bono[] = [
-    {value: 'individual', viewValue: 'Individual'},
-    {value: 'discapacitado', viewValue: 'Discapacitado'},
-    {value: 'privado', viewValue: 'Seguro Prvado'}
-  ];
+  constructor(private dataApi: DataApiService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
-  sesiones: Sesion[] = [
-    {value: 'individual', viewValue: 'Individual'},
-    {value: 'discapacitado', viewValue: 'Discapacitado'},
-    {value: 'privado', viewValue: 'Seguro Prvado'}
-  ];
+    ngOnInit() {
+      this.getDetallesPaciente();
+    }
 
-  sexo: Sexo[] = [
-    {value: 'hombre', viewValue: 'Hombre'},
-    {value: 'mujer', viewValue: 'Mujer'}
-  ];
+    getDetallesPaciente() {
+// tslint:disable-next-line: no-string-literal
+      this.idPaciente = this.route.snapshot.params['id'];
+      this.dataApi.getOnePaciente(this.idPaciente).subscribe( paciente => this.paciente = paciente);
+    }
 
-  deporte: Deporte[] = [
-    {value: 'si', viewValue: 'Si'},
-    {value: 'no', viewValue: 'No'}
-  ];
+    onModificarPaciente({value}: {value: Pacientes}) {
+      value.id = this.idPaciente;
+      this.dataApi.actualizarPaciente(value);
+      this.router.navigate(['paciente/ficha-paciente/' + this.idPaciente]);
+    }
 
-  trabaja: Trabaja[] = [
-    {value: 'si', viewValue: 'Si'},
-    {value: 'no', viewValue: 'No'}
-  ];
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
-
-  constructor( private dataApi: DataApiService,
-               private route: ActivatedRoute,
-               private router: Router ) { }
-
-  ngOnInit() {
-    // tslint:disable-next-line: no-string-literal
-    this.idPaciente = this.route.snapshot.params['id'];
   }
 
-}

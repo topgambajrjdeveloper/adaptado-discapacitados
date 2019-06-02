@@ -1,0 +1,57 @@
+<div class="modal fade" id="modalEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ !this.dataApi.selectedEmpleado.id ? 'Nuevo' : 'Actualizar'}}
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form name="formEmpleado" #formEmpleado="ngForm" (ngSubmit)="onSaveProfile(formEmpleado)">
+            <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedEmpleado.id">
+            <input type="hidden" name="userUid" [value]="userUid">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" name="nombre" placeholder="Nombre" [(ngModel)]="this.dataApi.selectedEmpleado.nombre" >
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="apellidos">Apellidos</label>
+                  <input type="tel" name="apellidos" class="form-control" placeholder="Apellidos" [(ngModel)]="this.dataApi.selectedEmpleado.apellidos">
+                </div>
+              </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="photoUrl">Imagen</label>
+                <input type="file">
+               </div>
+              </div>
+               <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="phoneNumber">Tel. Empleado</label>
+                <input type="tel" name="phoneNumber" class="form-control" placeholder="Tel. Empleado 600600600" maxlength="9" [(ngModel)]="this.dataApi.selectedEmpleado.phoneNumber">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="domicilio">Domicilio</label>
+                <input type="text" name="domicilio" class="form-control" placeholder="Domicilio Calle Cartaya, 1 Baja derecha 28024, Madrid" [(ngModel)]="this.dataApi.selectedEmpleado.domicilio">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" name="dni" [(ngModel)]="this.dataApi.selectedEmpleado.dni" placeholder="DNI 50000000D  oNIE X0000000D ">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Salvar Datos</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

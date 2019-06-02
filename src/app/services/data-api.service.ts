@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 
 // se importan el modelo paciente
@@ -16,77 +16,86 @@ export interface Empleado extends Empleado { id: string; }
 })
 export class DataApiService {
 
-public selectedPaciente = {
-  id: null,
-  nombre: '',
-  apellidos: '',
-  dni: '',
-  edad: '',
-  nacimiento: '',
-  domicilio: '',
-  phoneNumber: '',
-  photoUrl: '',
-  email: '',
-  bono: '',
-  sesiones: '',
-  observaciones: '',
-  operaciones: '',
-  accidentes: '',
-  lesiones: '',
-  sexo: '',
-  embarazosCesarias: '',
-  diagnosticos: '',
-  problemasViscerales: '',
-  enfermedades: '',
-  alergias: '',
-  medicaciones: '',
-  tratamientos: '',
-  antecedentesFamiliares: '',
-  frecuenciaFisioOste: '',
-  deporte: '',
-  trabaja: '',
-  relacionesHallazgos: '',
-  otrasOservaciones: '',
-  diaConsulta: '',
-  horaConsulta: '',
-  userUid: ''
-};
 
-public selectedEmpleado = {
-  id: null,
-  email: '',
-  password: '',
-  photoUrl: '',
-  nombre: '',
-  apellidos: '',
-  phoneNumber: '',
-  numeroEmpleado: '',
-  tipoEspecialista: '',
-  domicilio: '',
-  edad: '',
-  discapacidad: '',
-  dni: '',
-  displayName: '',
-  providerId: '',
-  status: '',
-  timestamp: '',
-  roles: ''
-};
-
-  constructor( private afs: AngularFirestore) {
-    // conexion a BBDD paciente
-    this.pacientesCollection = afs.collection<Pacientes>('paciente');
-    this.pacientes = this.pacientesCollection.valueChanges();
-    // conexion a BBDD empleado
-    this.empleadosCollection = afs.collection<Empleado>('empleado');
-    this.empleados = this.empleadosCollection.valueChanges();
-
-  }
-  // se crear la conexion para PACIENTES firestore
+  // Pacientes
   private pacientesCollection: AngularFirestoreCollection<Pacientes>;
   private pacientes: Observable<Pacientes[]>;
   private pacienteDoc: AngularFirestoreDocument<Pacientes>;
   private paciente: Observable<Pacientes>;
+  public selectedPaciente: Pacientes = {
+    id: null,
+    fullname: '',
+    dni: '',
+    edad: '',
+    nacimiento: '',
+    domicilio: '',
+    phoneNumber: '',
+    photoUrl: '',
+    email: '',
+    bono: '',
+    sexo: '',
+    sesiones: '',
+    fechaAltaPaciente: '',
+    // otros datos
+    observaciones: '',
+    operaciones: '',
+    accidentes: '',
+    lesiones: '',
+    colectivo: '',
+    embarazosCesarias: '',
+    diagnosticos: '',
+    problemasViscerales: '',
+    enfermedades: '',
+    alergias: '',
+    medicaciones: '',
+    tratamientos: '',
+    antecedentesFamiliares: '',
+    frecuenciaFisioOste: '',
+    deporte: '',
+    trabaja: '',
+    relacionesHallazgos: '',
+    otrasOservaciones: '',
+    diaConsulta: '',
+    horaConsulta: '',
+    timestamp: '',
+    userNombre: '',
+    userUid: ''
+  };
+  // Empleado
+  private empleadosCollection: AngularFirestoreCollection<Empleado>;
+  private empleados: Observable<Empleado[]>;
+  private empleadoDoc: AngularFirestoreDocument<Empleado>;
+  private empleado: Observable<Empleado>;
+  public selectedEmpleado: Empleado = {
+    id: '',
+    userUid: '',
+    email: '',
+    password: '',
+    photoUrl: '',
+    nombre: '',
+    apellidos: '',
+    userNombre: '',
+    phoneNumber: '',
+    numeroEmpleado: '',
+    tipoEspecialista: '',
+    domicilio: '',
+    edad: '',
+    discapacidad: '',
+    porcentaje: '',
+    dni: '',
+    bio: '',
+    providerId: '',
+    status: '',
+    timestamp: '',
+    fechaIncorporacion: '',
+    userId: '',
+    userName: '',
+    roles: null
+    };
+
+
+  constructor( private afs: AngularFirestore ) {}
+
 
   // metodos CRUD para paciente
   getAllPaciente() {
@@ -103,8 +112,8 @@ public selectedEmpleado = {
 
 
   // metodo para ver cada paciente
-  getOnePaciente(id: string) {
-    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/ficha-paciente/${id}`);
+  getOnePaciente(idPaciente: string) {
+    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
     return this.paciente = this.pacienteDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
         return null;
@@ -117,34 +126,28 @@ public selectedEmpleado = {
   }
 
   addPaciente(paciente: Pacientes): void {
-   this.pacientesCollection.add(paciente);
+    this.pacientesCollection.add(paciente);
   }
 
   // actualizar el paciente
-  actualizarPaciente( paciente: Pacientes ) {
-    return this.pacientesCollection.doc(paciente.id).update(paciente);
+  actualizarPaciente( paciente: Pacientes): void {
+    // tslint:disable-next-line: prefer-const
+    let idPaciente = paciente.id;
+    this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
+    this.pacienteDoc.update(paciente);
   }
 
   // borrar el paciente
-  borrarPaciente( idPaciente: string): void {
+  borrarPaciente(idPaciente: string): void {
     this.pacienteDoc = this.afs.doc<Pacientes>(`paciente/${idPaciente}`);
     this.pacienteDoc.delete();
   }
 
-  // se crear la conexion para EMPLEADO firestore
-  // tslint:disable-next-line: member-ordering
-  private empleadosCollection: AngularFirestoreCollection<Empleado>;
-  // tslint:disable-next-line: member-ordering
-  private empleados: Observable<Empleado[]>;
-  // tslint:disable-next-line: member-ordering
-  private empleadoDoc: AngularFirestoreDocument<Empleado>;
-  // tslint:disable-next-line: member-ordering
-  private empleado: Observable<Empleado>;
-
+/*-------------------------------------------------------------------------------------------*/
 
   // metodos CRUD para empleado
   getAllEmpleado() {
-    this.empleadosCollection = this.afs.collection<Empleado>('empleado');
+    this.empleadosCollection = this.afs.collection<Empleado>('emplados');
     return this.empleados = this.empleadosCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
@@ -157,8 +160,8 @@ public selectedEmpleado = {
 
 
   // metodo para ver cada empleado
-  getOneEmpleado(id: string) {
-    this.empleadoDoc = this.afs.doc<Empleado>(`empeado/${id}`);
+  getOneEmpleado(idEmpleado: string) {
+    this.empleadoDoc = this.afs.doc<Empleado>(`empleado/${idEmpleado}`);
     return this.empleado = this.empleadoDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
         return null;
@@ -170,18 +173,21 @@ public selectedEmpleado = {
     }));
   }
 
-  addEmpleado( empleado: Empleado ): void {
-   this.empleadosCollection.add(empleado);
+  addEmpleado(empleado: Empleado): void {
+    this.empleadosCollection.add(empleado);
   }
 
   // actualizar el empleado
-  actualizarEmpleado( empleado: Empleado ) {
-    return this.empleadosCollection.doc(empleado.id).update(empleado);
+  actualizarEmpleado( empleado: Empleado ): void {
+  // tslint:disable-next-line: prefer-const
+    let idEmpleado = empleado.id;
+    this.empleadoDoc = this.afs.doc<Empleado>(`empleado/${idEmpleado}`);
+    this.empleadoDoc.update(empleado);
   }
 
   // borrar el empleado
-  borrarEmpleado( idEmpleaado: string): void {
-    this.empleadoDoc = this.afs.doc<Empleado>(`empleado/${idEmpleaado}`);
+  borrarEmpleado( empleado: Empleado): void {
+    this.empleadoDoc = this.afs.doc(`empleado/${empleado.id}`);
     this.empleadoDoc.delete();
   }
 

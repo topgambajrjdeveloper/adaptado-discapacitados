@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ImagePipe } from '../../pipes/image.pipe';
+import { Empleado } from '../../models/index.class';
 
 @Component({
   selector: 'app-navbar',
@@ -11,11 +13,14 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+// tslint:disable-next-line: no-inferrable-types
   public isLogged: boolean = false;
+// tslint:disable-next-line: no-inferrable-types
   public isAdmin: boolean = false;
   public userNombre: string;
   public photoUrl: string;
   public userId: string;
+  public empleado: Empleado;
 
   constructor( private afAuth: AngularFireAuth,
                private authService: AuthService,

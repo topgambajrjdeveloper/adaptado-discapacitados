@@ -1,16 +1,175 @@
 <div class="card col-md-12 wrap-top">
     <mat-card>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/privado/citas">Calendario</a>
-      </li>
-      <li class="breadcrumb-item active">Nuevo Paciente</li>
-    </ol>
-  </mat-card>
-  <br><br>
-  <mat-card>
-      <mat-card>
-
-      </mat-card>
-  </mat-card>
-</div>
+      <app-migaspan></app-migaspan>
+    </mat-card>
+    <br />
+    <mat-card>
+      <div class="col-md-10 mx-auto mt-2">
+        <div class="card">
+          <div class="card-header">Editar Ficha Paciente {{ paciente.fullname }} </div>
+          <div class="card-body">
+            <form #formModificar="ngForm" (ngSubmit)="onModificarPaciente(formModificar)">
+              <div class="form-group">
+                <label for="fullname">Nombre completo</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" #fullname="ngModel"
+                [(ngModel)]="paciente.fullname">
+              </div>
+              <div class="form-group">
+                <label for="email">Correo del paciente</label>
+                <input type="text" class="form-control" id="email" name="email" #email="ngModel" autocomplete="on"
+                [(ngModel)]="paciente.email">
+              </div>
+              <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" id="dni" name="dni" #dni="ngModel" maxlength="9" autocomplete="on"
+                [(ngModel)]="paciente.dni">
+              </div>
+              <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" class="form-control" id="edad" name="edad" #edad="ngModel" maxlength="2"
+                [(ngModel)]="paciente.edad">
+              </div>
+              <div class="form-group">
+                <label for="nacimiento">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="nacimiento" name="nacimiento" #nacimiento="ngModel"
+                [(ngModel)]="paciente.dni">
+              </div>
+              <div class="form-group">
+                <label for="domicilio">Domicilio</label>
+                <input type="text" class="form-control" id="domicilio" name="domicilio" #domicilio="ngModel" maxlength="100" autocomplete="on"
+                [(ngModel)]="paciente.domicilio">
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Telf del paciente</label>
+                <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" maxlength="9"
+                [(ngModel)]="paciente.phoneNumber">
+              </div>
+              <div class="form-group">
+                <label for="photoUrl">Fotografía del paciente</label>
+                <input type="file" class="form-control" id="photoUrl" name="photoUrl" #photoUrl="ngModel"
+                [(ngModel)]="paciente.photoUrl">
+              </div>
+              <div class="form-group">
+                <label for="bono">Bono</label>
+                <span class="badge badge-pill badge-dark" *ngFor="let item of paciente.bono">{{item}}</span>
+                <select multiple="" name="bono" id="bono" class="form-control" #bono="ngModel"
+                [(ngModel)]="paciente.bono">
+                  <option>Bono Discapacitado</option>
+                  <option>Bono 5 Sessiones</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sexo">Sexo</label>
+                <input type="text" class="form-control" id="sexo" name="sexo" #sexo="ngModel"
+                [(ngModel)]="paciente.sexo">
+              </div>
+              <div class="form-group">
+                <label for="fechaAltaPaciente">Fecha de alta en Clinica RodMan</label>
+                <input type="date" class="form-control" id="fechaAltaPaciente" name="fechaAltaPaciente" #fechaAltaPaciente="ngModel"
+                [(ngModel)]="paciente.fechaAltaPaciente">
+              </div>
+              <div class="form-group">
+                <label for="observaciones">Observaciones</label>
+                <textarea type="text" class="form-control" id="observaciones" name="observaciones" #observaciones="ngModel" rows="5"
+                [(ngModel)]="paciente.observaciones"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="operaciones">Operaciones</label>
+                <textarea type="text" class="form-control" id="operaciones" name="operaciones" #operaciones="ngModel" rows="5"
+                [(ngModel)]="paciente.operaciones"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="accidentes">Accidentes</label>
+                <input type="text" class="form-control" id="accidentes" name="accidentes" #accidentes="ngModel"
+                [(ngModel)]="paciente.accidentes">
+              </div>
+              <div class="form-group">
+                <label for="lesiones">Lesiones</label>
+                <textarea type="text" class="form-control" id="lesiones" name="lesiones" #lesiones="ngModel" rows="10"
+                [(ngModel)]="paciente.lesiones"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="colectivo">Colectivo</label>
+                <span class="badge badge-pill badge-dark" *ngFor="let item of paciente.colectivo">{{item}}</span>
+                <select multiple="" name="colectivo" id="colectivo" class="form-control" #colectivo="ngModel"
+                [(ngModel)]="paciente.colectivo">
+                  <option>Mutuas</option>
+                  <option>Seguridad Social</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="embarazosCesarias">Embarazos o Cesarias</label>
+                <input type="text" class="form-control" id="embarazosCesarias" name="embarazosCesarias" #embarazosCesarias="ngModel"
+                [(ngModel)]="paciente.embarazosCesarias">
+              </div>
+              <div class="form-group">
+                <label for="diagnosticos">Diagnosticos</label>
+                <textarea type="text" class="form-control" id="diagnosticos" name="diagnosticos" #diagnosticos="ngModel" rows="10"
+                [(ngModel)]="paciente.diagnosticos"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="problemasViscerales">Problemas viscerales</label>
+                <textarea type="text" class="form-control" id="problemasViscerales" name="problemasViscerales" #problemasViscerales="ngModel" rows="10"
+                [(ngModel)]="paciente.problemasViscerales"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="enfermedades">Enfermedades</label>
+                <input type="text" class="form-control" id="enfermedades" name="enfermedades" #enfermedades="ngModel"
+                [(ngModel)]="paciente.enfermedades">
+              </div>
+              <div class="form-group">
+                <label for="alergias">Alergias</label>
+                <textarea type="text" class="form-control" id="alergias" name="alergias" #alergias="ngModel" rows="5"
+                [(ngModel)]="paciente.alergias"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="medicaciones">Medicaciones</label>
+                <textarea type="text" class="form-control" id="medicaciones" name="medicaciones" #medicaciones="ngModel" rows="10"
+                [(ngModel)]="paciente.medicaciones"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="tratamientos">Tratamientos</label>
+                <textarea type="text" class="form-control" id="tratamientos" name="tratamientos" #tratamientos="ngModel" rows="50" 
+                          placeholder="Poner la fecha cuando se añada algun tratamiento nuevo. Ejemple: 02/06/2019 ..."
+                [(ngModel)]="paciente.tratamientos"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="antecedentesFamiliares">Antecedentes familiares</label>
+                <textarea type="text" class="form-control" id="antecedentesFamiliares" name="antecedentesFamiliares" #antecedentesFamiliares="ngModel" rows="10"
+                [(ngModel)]="paciente.antecedentesFamiliares"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="frecuenciaFisioOste">Frecuencia FisioOste</label>
+                <textarea type="text" class="form-control" id="frecuenciaFisioOste" name="frecuenciaFisioOste" #frecuenciaFisioOste="ngModel" rows="10"
+                [(ngModel)]="paciente.frecuenciaFisioOste"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="deporte">Practica deporte</label>
+                <textarea type="text" class="form-control" id="deporte" name="deporte" #deporte="ngModel" rows="5"
+                [(ngModel)]="paciente.deporte"></textarea>
+              </div>              
+              <div class="form-group">
+                <label for="trabaja">Trabaja</label>
+                <textarea type="text" class="form-control" id="trabaja" name="trabaja" #trabaja="ngModel" rows="3"
+                [(ngModel)]="paciente.trabaja"></textarea>
+              </div>              
+              <div class="form-group">
+                <label for="relacionesHallazgos">Relaciones y hallazgos</label>
+                <textarea type="text" class="form-control" id="relacionesHallazgos" name="relacionesHallazgos" #relacionesHallazgos="ngModel" rows="50" 
+                placeholder="Poner la fecha cuando se añada alguna relación y hallazgo nuevo. Ejemple: 02/06/2019 ..."
+                [(ngModel)]="paciente.relacionesHallazgos"></textarea>
+              </div>              
+              <div class="form-group">
+                <label for="otrasOservaciones">Otras oservaciones</label>
+                <textarea type="text" class="form-control" id="otrasOservaciones" name="otrasOservaciones" #otrasOservaciones="ngModel" rows="50" 
+                placeholder="Poner la fecha cuando se añada alguna otra oservación nueva. Ejemple: 02/06/2019 ..."
+                [(ngModel)]="paciente.relacionesHallazgos"></textarea>
+              </div>  
+              
+              <input type="submit" value="Guadar" class="btn btn-primary btn-block">
+            </form>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>

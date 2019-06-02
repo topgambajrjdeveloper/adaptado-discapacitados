@@ -1,11 +1,6 @@
 <div class="card col-md-12 wrap-top">
-    <mat-card>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/privado/citas">Calendario</a>
-      </li>
-      <li class="breadcrumb-item active">Lista Pacientes</li>
-    </ol>
+  <mat-card>
+    <app-migaspan></app-migaspan>
   </mat-card>
   <br><br>
   <div class="row">
@@ -20,19 +15,14 @@
       </mat-form-field>
     <mat-table class="container" [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-        <ng-container matColumnDef="nombre">
-           <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.nombre }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="apellidos">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.apellidos }} </mat-cell>
+        <ng-container matColumnDef="fullname">
+           <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre y apellidos</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.fullname }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="diaConsulta">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Día consulta</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.diaConsulta }} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{ element.diaConsulta | date:'longDate' }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="horaConsulta">
@@ -41,12 +31,14 @@
         </ng-container>
 
         <ng-container matColumnDef="acciones">
-          <mat-header-cell *matHeaderCellDef> Acciones &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button mat-flat-button color="warn" > Crear </button> </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> Acciones  </mat-header-cell>
 
           <mat-cell *matCellDef="let element">
              &nbsp;
-            <button mat-flat-button color="accent"(click)="onView(element.id)"><mat-icon>visibility</mat-icon></button> &nbsp;
-            <button mat-flat-button color="warn" (click)="onDelete(element.id)"> <mat-icon>delete</mat-icon> </button> </mat-cell>
+            <button mat-flat-button color="accent" (click)="onView(element)">Ver Ficha</button> &nbsp;
+            <button mat-flat-button color="warn" (click)="onDelete(element)"> Eliminar </button>
+          </mat-cell>
+
         </ng-container>
 
         <mat-divider></mat-divider>

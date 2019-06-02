@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PresenceService } from '../../../services/presence.service';
-
+import {Empleado} from '../../../models/index.class';
 @Component({
   selector: 'app-user-status',
   templateUrl: './user-status.component.html',

@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
@@ -9,45 +12,59 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from './../environments/environment';
 
+import { HttpClientModule } from '@angular/common/http';
 import { ServiciosModule } from './services/servicios/servicios.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AngularModule } from './material/angular/angular.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent, FooterComponent, ErrorComponent, ConfiguracionComponent, FormComponent,
-  ProfileComponent, CalendarioComponent, NuevoEmpleadoComponent, EmpleadoComponent, NotPermissionComponent,
-  NuevoPacienteComponent, ListaPacienteComponent, FichaPacienteComponent,
-  AccederComponent, RecuperarComponent, RegistroComponent, UserStatusComponent } from './componentes/index.paginas';
-import { PhotoUrlComponent } from './componentes/paciente/photo-url/photo-url.component';
 
+
+import { AppComponent } from './app.component';
+import { ConfiguracionComponent, ErrorComponent, FooterComponent,
+  NavbarComponent, RecuperarComponent, AccederComponent,
+  RegistroComponent, NotPermissionComponent, MigaspanComponent,
+  CalendarioComponent, ProfileComponent, NuevoEmpleadoComponent,
+  EmpleadoComponent, UserStatusComponent, PhotoUrlComponent,
+  FichaPacienteComponent, NuevoPacienteComponent, ListaPacienteComponent,
+  FormComponent, MensajesComponent } from './componentes/index.paginas';
+import { ImagePipe } from './pipes/image.pipe';
+import { EditProfileComponent } from './componentes/privado/edit-profile/edit-profile.component';
+import { ModalComponent } from './componentes/privado/calendario/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent,
-    AccederComponent,
-    RecuperarComponent,
     ConfiguracionComponent,
     ErrorComponent,
-    NavbarComponent,
     FooterComponent,
-    EmpleadoComponent,
-    CalendarioComponent,
-    NuevoEmpleadoComponent,
-    ProfileComponent,
-    FichaPacienteComponent,
-    ListaPacienteComponent,
-    NuevoPacienteComponent,
-    UserStatusComponent,
+    NavbarComponent,
+    RecuperarComponent,
+    AccederComponent,
+    RegistroComponent,
     NotPermissionComponent,
+    MigaspanComponent,
+    CalendarioComponent,
+    ProfileComponent,
+    NuevoEmpleadoComponent,
+    EmpleadoComponent,
+    UserStatusComponent,
+    PhotoUrlComponent,
+    FichaPacienteComponent,
+    NuevoPacienteComponent,
+    ListaPacienteComponent,
     FormComponent,
-    PhotoUrlComponent
+    MensajesComponent,
+    ImagePipe,
+    EditProfileComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
@@ -59,10 +76,10 @@ import { PhotoUrlComponent } from './componentes/paciente/photo-url/photo-url.co
     AngularFireStorageModule,
     AngularModule
   ],
-  providers: [
+  providers: [{ provide: LOCALE_ID, useValue: 'es' },
     ServiciosModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [FormComponent]
+  entryComponents: []
 })
 export class AppModule { }

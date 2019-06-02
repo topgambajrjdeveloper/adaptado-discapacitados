@@ -1,72 +1,37 @@
 <div class="card col-md-12 wrap-top">
   <mat-card>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/privado/citas">Calendario</a>
-      </li>
-      <li class="breadcrumb-item active">Buscar Empleados</li>
-    </ol>
+    <app-migaspan></app-migaspan>
   </mat-card>
   <br /><br />
   <div class="row">
     <div class="col-md-12">
       <mat-card>
-        <mat-form-field>
-          <input
-            matInput
-            (keyup)="applyFilter($event.target.value)"
-            placeholder="Buscar paciente, (Nombre, Apellidos...)"
-          />
-        </mat-form-field>
-        <mat-table
-          class="container"
-          [dataSource]="dataSource"
-          class="mat-elevation-z8"
-          matSort
-        >
-          <ng-container matColumnDef="nombre">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Nombre
-            </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              {{ element.nombre }}
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="apellidos">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Apellidos
-            </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              {{ element.apellidos }}
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="acciones">
-            <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              &nbsp;
-              <button mat-flat-button color="accent" (click)="onEdit(element)">
-                <mat-icon>arrow_right_alt</mat-icon>
-              </button>
-              &nbsp;
-              <button
-                mat-flat-button
-                color="warn"
-                (click)="onDelete(element.id)"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
-
-          <mat-divider></mat-divider>
-
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </mat-table>
-        <mat-paginator [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons>
-        </mat-paginator>
+        <h6 class="border-bottom border-gray mb-3">Empleados de Clinica RD</h6>
+            <div class="card mb-3" *ngFor="let empleado of empleado">
+                <h3 class="card-header">{{ empleado.nombre }} - {{ empleado.apellidos }} - {{ empleado.dni }}</h3>
+                <div class="card-body">
+                  <h5 class="card-title">Num. de empleado: {{ empleado.numeroEmpleado }}</h5>
+                  <h6 class="card-subtitle text-muted">Tipo de especialista: {{ empleado.tipoEspecialista }}</h6>
+                </div>
+                <img style="height: 100px; width: 100px;" *ngIf="!photoUrl" [src]="photoUrl " alt="imagen de perfil">
+                <div class="card-body">
+                  <p class="card-text">{{ empleado.domicilio }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Nombre de usuario: {{ empleado.userName }}</li>
+                  <li class="list-group-item">Fecha de nacimeiento: {{ empleado.edad | date: 'shortDate' }}</li>
+                  <li class="list-group-item">Tel Empleado: {{ empleado.phoneNumber }}</li>
+                  <li class="list-group-item">Tipo de especialista: {{ empleado.tipoEspecialista }}</li>
+                  <li class="list-group-item">Estado de conexión: {{ empleado.status }}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link" (click)="onEdit()">Editar trabajador</a>
+                  <a href="#" class="card-link" (click)="onDelete(empleado)">Eliminar trabajador</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="card-text">Incorporación a Clinica - {{ empleado.fechaIncorporacion | date: 'medium' }}  </p>
+                </div>
+              </div>
       </mat-card>
     </div>
   </div>

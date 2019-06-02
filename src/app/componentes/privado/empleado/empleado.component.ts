@@ -1,67 +1,54 @@
-import { Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
-import { DataApiService } from './../../../services/data-api.service';
-import { MatPaginator, MatTableDataSource, MatSort, MatSortModule } from '@angular/material';
-import { Observable } from 'rxjs';
-import { Empleado } from 'src/app/models/empleado';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { DataApiService, AuthService } from './../../../services/index.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Empleado } from '../../../models/index.class';
+
 
 @Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit, AfterViewInit {
+export class EmpleadoComponent implements OnInit {
 
-  empleados: Observable<Empleado[]>;
+  constructor( private dataApi: DataApiService,
+               private authService: AuthService,
+               private router: Router) {}
+  // tslint:disable-next-line: no-inferrable-types
+  public isAdmin: boolean  = false;
+  public userUid: string = null;
+  public empleado: Empleado;
 
-  displayedColumns: string[] = ['nombre', 'apellidos', 'acciones'];
-  dataSource = new MatTableDataSource();
+  ngOnInit() {
+    this.getTodosEmpleado();
+    this.getCurrentUser();
+  }
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  public empleadoI = [];
-  public empleado = '';
-
-  constructor( private dataApi: DataApiService) {
+  getCurrentUser() {
 
   }
 
-  ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataApi.getAllEmpleado().subscribe(empleados => {
-      this.empleadoI = empleados;
-      this.dataSource.data = empleados;
-    });
+  getTodosEmpleado() {
+    this.dataApi.getAllEmpleado().subscribe( empleado => this.empleado);
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-  }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  onEdit(element: any) {
-    if (element) {
-      this.dataApi.selectedEmpleado = element;
+  onDelete(id: any) {
+    const confirmacion = confirm('Are you sure?');
+    if (confirmacion) {
+      this.dataApi.borrarEmpleado(id);
     }
+    this.router.navigate(['privado/empleado']);
   }
 
-  onDelete(id: string) {
-    this.dataApi.borrarEmpleado(id);
+  onEdit(empleado: Empleado) {
+    // this.dataApi.actualizarEmpleado(empleado);
+    console.log(empleado);
+    this.router.navigate(['/privado/edit-profile/', empleado]);
   }
 
-  onSaveForm() {
-    if (this.dataApi.selectedEmpleado.id == null) {
-      const nuevoempleado = {
-        nombre: this.dataApi.selectedEmpleado.nombre,
-        apellidos: this.dataApi.selectedEmpleado.apellidos
-      };
-      this.dataApi.addEmpleado(this.dataApi.selectedEmpleado.id);
-    } else {
-      this.dataApi.actualizarEmpleado(this.dataApi.selectedEmpleado.id);
-    }
+  onSaveForm() {}
 
-  }
 }

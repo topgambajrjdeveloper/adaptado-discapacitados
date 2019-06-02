@@ -1,3 +1,3 @@
-export class global {
+export class Global {
 
 }

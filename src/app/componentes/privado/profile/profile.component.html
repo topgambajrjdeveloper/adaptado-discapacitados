@@ -1,123 +1,140 @@
 <div class="card col-md-12 wrap-top">
-    <mat-card>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/privado/citas">Calendario</a>
-      </li>
-      <li class="breadcrumb-item active">Mi Perfíl</li>
-    </ol>
-  </mat-card>
-  <br><br>
   <mat-card>
-      <mat-card class="container bootstrap snippet">
+    <app-migaspan></app-migaspan>
+  </mat-card>
+  <br /><br />
+  <mat-card>
+    <mat-card>
+      <div class="container emp-profile">
+        <form>
           <div class="row">
-            <div class="col-sm-3">
-              <!--left col-->
-
-              <div class="text-center">
-                <img
-                  src="{{ empleado.photoUrl }}" class="img-thumbnail" alt="profile"
-                />
-              </div>
-              <br />
-
-              <ul class="list-group">
-                <li class="list-group-item text-muted">
-                  Activity <i class="fa fa-dashboard fa-1x"></i>
-                </li>
-                <li class="list-group-item text-right">
-                  <span class="pull-left"><strong>Pacientes hoy</strong></span> 125
-                </li>
-                <li class="list-group-item text-right">
-                  <span class="pull-left"><strong>Urgencias</strong></span> 13
-                </li>
-                <li class="list-group-item text-right">
-                  <span class="pull-left"><strong>Estado de conexión</strong></span>
-                  <h5 *ngIf="providerId != 'password'">{{ empleado.status }}</h5>
-                </li>
-              </ul>
-
-              <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">
-                  <i class="fa fa-facebook fa-2x"></i>
-                  <i class="fa fa-github fa-2x"></i>
-                  <i class="fa fa-twitter fa-2x"></i>
-                  <i class="fa fa-pinterest fa-2x"></i>
-                  <i class="fa fa-google-plus fa-2x"></i>
-                </div>
+            <div class="col-md-4">
+              <div class="profile-img">
+                <mat-card>
+                  <img
+                    src="{{ empleado.photoUrl }}"
+                    alt="Imagen Perfíl"
+                    height="150"
+                    width="150"
+                  />
+                  <div class="file btn btn-lg btn-primary" *ngIf="!empleado.photoUrl" >
+                    Cambiar Fotografía
+                    <input type="file" name="file" />
+                  </div>
+                </mat-card>
               </div>
             </div>
-            <!--/col-3-->
-            <div class="col-sm-9">
-              <div class="tab-content">
-                <div class="tab-pane active" id="home">
-                  <hr />
-                  <form class="form" action="##" method="post" id="registrationForm">
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="first_name"><h4>Nombre</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.nombre }}</h5>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="last_name"><h4>Apellidos</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.apellidos }}</h5>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="phone"><h4>Teléfono</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.phoneNumber }}</h5>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="email"><h4>Email</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.email }}</h5>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="domicilio"><h4>Domicilio</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.domicilio }}</h5>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="numeroEmpleado"><h4>Nun. Empleado</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.numeroEmpleado }}</h5>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="dni"><h4>DNI</h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.dni }}</h5>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <label for="roles"><h4></h4></label>
-                        <h5 *ngIf="providerId != 'password'">{{ empleado.roles }}</h5>
-                      </div>
-                    </div>
-                  </form>
-                  <hr />
-                </div>
-                <!--/tab-pane-->
+            <div class="col-md-6">
+              <div class="profile-head">
+                <h5>
+                  {{ empleado.nombre }}
+                </h5>
+                <h6>
+                  {{ empleado.tipoEspecialista }}
+                </h6>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      id="home-tab"
+                      data-toggle="tab"
+                      href="#home"
+                      role="tab"
+                      aria-controls="home"
+                      aria-selected="true"
+                      >Mi Pefíl</a
+                    >
+                  </li>
+                </ul>
               </div>
-              <!--/tab-content-->
             </div>
-            <!--/col-9-->
+            <div class="col-md-2">
+              <p>Estado | {{ empleado.status }}</p>
+            </div>
           </div>
-          <!--/row-->
-        </mat-card>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-work">
+                <p>Pacientes</p>
+                <mat-card>Pacientes Hoy</mat-card> <br />
+                <p>Pacientes</p>
+                <mat-card>Pacientes</mat-card> <br />
+                <p>Mensajes</p>
+                <mat-card>Mensajes Hoy</mat-card> <br />
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="tab-content profile-tab" id="myTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="home"
+                  role="tabpanel"
+                  aria-labelledby="home-tab"
+                >
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Num Empleado</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ empleado.numeroEmpleado }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Nombre y apellidos</label>
+                    </div>
+                    <div class="col-md-6" *ngIf="providerId != 'password'">
+                      <p>{{ empleado.nombre }} {{ empleado.apellidos }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Email</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ empleado.email }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Tel Empleado</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ empleado.phoneNumber }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Especialista</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ empleado.tipoEspecialista }}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Fecha incorporación</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ empleado.fechaIncorporacion | date:'medium' }}</p>
+                    </div>
+                    <div class="col-md-8">
+
+                          <input data-toggle="modal" data-target="#modalEmpleado"
+                          type="submit"
+                          class="btn btn-primary btn-submit float-right"
+                          value="Editar"
+                          (click)="editarPerfil(empleado)"/>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card>
   </mat-card>
 </div>
 
+<!-- Modal -->
+<app-edit-profile></app-edit-profile>

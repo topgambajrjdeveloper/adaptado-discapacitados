@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PresenceService } from '../presence.service';
 import { DataApiService } from '../data-api.service';
 import { AuthService } from '../auth.service';
+import { CalendarFirebaseService } from '../calendar-firebase.service';
 
 
 @NgModule({
@@ -11,12 +12,14 @@ import { AuthService } from '../auth.service';
     CommonModule,
     AuthService,
     DataApiService,
-    PresenceService
+    PresenceService,
+    CalendarFirebaseService
   ],
   exports: [
     AuthService,
     DataApiService,
-    PresenceService
+    PresenceService,
+    CalendarFirebaseService
   ]
 })
 export class ServiciosModule { }

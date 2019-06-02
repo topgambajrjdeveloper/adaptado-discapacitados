@@ -1,4 +1,4 @@
-<div class="card col-md-12 wrap-top">
+<div class="card col-12 wrap-top">
   <mat-card>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -9,141 +9,51 @@
   </mat-card>
   <br /><br />
   <mat-card>
-    <mat-card>
-      <form>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Nombre"
-              id="nombre"
-              name="nombre"
-              type="text"
-            />
-          </mat-form-field>
+    <mat-card class="form">
+      <mat-card-title>Nuevo Empleado</mat-card-title>
+      <form #formGuardar="ngForm" (ngSubmit)="onSubmitEmpleado(formGuardar)" >
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre"  #nombre="ngModel" [(ngModel)]="empleado.nombre" name="nombre" placeholder="Nombre">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Apellidos"
-              id="apellidos"
-              name="apellidos"
-              type="text"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos"  #apellidos="ngModel" [(ngModel)]="empleado.apellidos" name="apellidos" placeholder="Apellidos">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Teléfono"
-              id="phoneNumber"
-              name="phoneNumber"
-              type="number"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="photoUrl">Imagen Perfiíl</label>
+          <input type="file" class="form-control-file" id="photoUrl"  #photoUrl="ngModel" [(ngModel)]="empleado.photoUrl" name="photoUrl">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Número de empleado"
-              id="numeroEmpleado"
-              name="numeroEmpleado"
-              type="number"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" #email="ngModel" [(ngModel)]="empleado.email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Email"
-              id="email"
-              name="email"
-              type="email"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password"  #password="ngModel" [(ngModel)]="empleado.password" name="password" maxlength="9" placeholder="Escribe una contraseña" required>
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Password"
-              id="password"
-              name="password"
-              type="password"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="phoneNumber">Tel. Empleado</label>
+          <input type="number" class="form-control" id="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="empleado.phoneNumber" name="phoneNumber" maxlength="9" placeholder="Tel. Empleado 600000000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Tipo de especialista"
-              id="tipoEspecialista"
-              name="tipoEspecialista"
-              type="text"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="dni">DNI</label>
+          <input type="text" class="form-control" id="dni" #dni="ngModel" [(ngModel)]="empleado.dni" name="dni" placeholder="DNI Empleado 50000000X">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Edad del trabajador"
-              id="edad"
-              name="edad"
-              type="number"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="date" class="form-control" id="edad" #edad="ngModel" [(ngModel)]="empleado.edad" name="edad" placeholder="Edad 2/8/1981">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Tipo de discapacidad"
-              id="discapacidad"
-              name="discapacidad"
-              type="text"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="domicilio">Domicilio</label>
+          <input type="text" class="form-control" id="domicilio" #domicilio="ngModel" [(ngModel)]="empleado.domicilio" name="domicilio" placeholder="Calle Cartaya, 2, Madrid 21802">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Domicilio de trabajador"
-              id="domicilio"
-              name="domicilio"
-              type="text"
-            />
-          </mat-form-field>
+        <div class="form-group">
+          <label for="bio">Biografía</label>
+          <input type="text" class="form-control" id="bio" #bio="ngModel" [(ngModel)]="empleado.bio" name="bio" placeholder="Biografía">
         </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="DNI del trabajador"
-              id="dni"
-              name="dni"
-              type="text"
-            />
-          </mat-form-field>
-        </div>
-        <div class="col-md-10 form">
-          <mat-form-field>
-            <mat-label>Tipo de usuario</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let rol of rol" [value]="rol.value">
-                {{ rol.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <button class="btn-lg btn-block" mat-flat-button color="primary"> Guardar empleado </button>
-      </form>
+        <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+    </form>
     </mat-card>
   </mat-card>
 </div>

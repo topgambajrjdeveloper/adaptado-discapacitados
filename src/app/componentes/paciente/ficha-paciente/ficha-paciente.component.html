@@ -1,16 +1,187 @@
 <div class="card col-md-12 wrap-top">
-    <mat-card>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/privado/citas">Calendario</a>
-      </li>
-      <li class="breadcrumb-item active">Ficha Paciente</li>
-    </ol>
-  </mat-card>
-  <br><br>
   <mat-card>
-      <mat-card>
-
-      </mat-card>
+    <app-migaspan></app-migaspan>
   </mat-card>
+  <br /><br />
+  <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" data-toggle="tab" href="#ficha">Ficha</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" data-toggle="tab" href="#datos">Otros Datos</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" data-toggle="tab" href="#"></a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+
+      <!-- Datos Personales -->
+      <div class="tab-pane fade" id="ficha">
+          <mat-card>
+              <mat-card class="container bootstrap snippet">
+                <div class="row">
+                  <div class="col-sm-3" *ngFor="let paciente of paciente ">
+                    <!--left col-->
+                    <!--Imagen de perfil-->
+                    <mat-card>
+                      <div class="text-center">
+                        <img
+                          [src]="paciente.photoUrl | async"
+                          class="img-thumbnail"
+                          alt="profile"
+                        />
+                      </div>
+                    </mat-card>
+                    <br />
+                    <!-- Actividad -->
+                    <mat-card>
+                      <ul class="list-group">
+                          <li class="list-group-item text-right">
+                              <span class="pull-left"><strong> Bono</strong></span>
+                              {{ paciente.bono }}
+                          </li>
+                          <li class="list-group-item text-right">
+                            <span class="pull-left"><strong> Sesiones</strong></span>
+                            {{ paciente.sesiones }}
+                          </li>
+                          <li class="list-group-item text-right">
+                              <span class="pull-left"><strong> Sesiones</strong></span>
+                              {{ paciente.sesiones }}
+                            </li>
+                      </ul>
+                    </mat-card>
+                    <!-- Mensajería Interna -->
+                    <mat-card>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">TimesTamp</div>
+                        <div class="panel-body">
+                          <app-mensajes></app-mensajes>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+                  <!--/col-3-->
+                  <!-- Datos del trabajado no editables -->
+                  <div class="col-sm-9">
+                    <div class="tab-content">
+                      <div class="tab-pane active">
+                        <hr />
+                        <div class="form-group">
+                          <label for="nombre">Nombre y apellidos</label>
+                          <p>{{paciente.fullname}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Dirección de correo electrónico</label>
+                          <p>{{paciente.email}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="phoneNumber">Telf. Paciente</label>
+                          <p>{{paciente.phoneNumber}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="dni">Num. DNI</label>
+                          <p>{{paciente.dni}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="edad">Edad</label>
+                          <p>{{paciente.edad}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="nacimiemto">Fecha de nacimiemto</label>
+                          <p>{{paciente.nacimiento}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="sexo">Sexo del paciente</label>
+                          <p>{{paciente.sexo}}</p>
+                        </div>
+                        <div class="form-group">
+                          <label for="userUid">Dado de alta por</label>
+                          <p>{{paciente.userUid}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="operaciones">Operaciones</label>
+                            <p>{{paciente.operaciones}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="accidentes">Accidentes</label>
+                            <p>{{paciente.accidentes}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="lesiones">Lesiones</label>
+                            <p>{{paciente.lesiones}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="embarazosCesarias">Embarazos o Cesarias</label>
+                            <p>{{paciente.embarazosCesarias}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="diagnosticos">Primer Diagnostico</label>
+                            <p>{{paciente.diagnosticos}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="problemasViscerales">Problemas Viscerales</label>
+                            <p>{{paciente.problemasViscerales}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="enfermedades">Enfermedades</label>
+                            <p>{{paciente.enfermedades}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="alergias">Alergias</label>
+                            <p>{{paciente.alergias}}</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="medicaciones">Medicaciones</label>
+                            <p>{{paciente.medicaciones}}</p>
+                          </div>
+                          <div class="form-group">
+                              <label for="observaciones">Observaciones</label>
+                              <p>{{paciente.observaciones}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="diagnosticos">Diagnosticos</label>
+                              <p>{{paciente.diagnosticos}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="antecedentesFamiliares">Antecedentes Familiares</label>
+                              <p>{{paciente.antecedentesFamiliares}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="frecuenciaFisioOste">Frecuencia Fisio Oste</label>
+                              <p>{{paciente.frecuenciaFisioOste}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="deporte">Deporte</label>
+                              <p>{{paciente.deporte}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="trabaja">Trabaja</label>
+                              <p>{{paciente.trabaja}}</p>
+                            </div>
+                            <div class="form-group">
+                              <label for="relacionesHallazgos">Relaciones o Hallazgos</label>
+                              <p>{{paciente.relacionesHallazgos}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="otrasOservaciones">Otras Observaciones</label>
+                                <p>{{paciente.otrasOservaciones}}</p>
+                              </div>
+                            <div class="form-group">
+                              <label for="medicaciones">Medicaciones</label>
+                              <p>{{paciente.medicaciones}}</p>
+                            </div>
+                        <hr />
+                      </div>
+                      <!--/tab-pane-->
+                    </div>
+                    <!--/tab-content-->
+                  </div>
+                  <!--/col-9-->
+                </div>
+                <!--/row-->
+              </mat-card>
+            </mat-card>
+      </div>
+    </div>
 </div>
