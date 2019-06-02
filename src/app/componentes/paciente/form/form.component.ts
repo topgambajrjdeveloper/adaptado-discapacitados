@@ -68,10 +68,10 @@ export class FormComponent implements OnInit {
     value.fechaAltaPaciente = (new Date()).getTime();
     this.authService.isAuth().subscribe( user => {
       value.userUid = user.uid;
-      value.userNombre = user.displayName;
+      value.fullname = user.email;
       this.dataApi.addPaciente(value);
     });
-    this.router.navigate(['/paciente/buscar-paciente']);
+    this.router.navigate(['/paciente/ficha-paciente', value.id]);
   }
 
   uploadFile(event) {
@@ -84,7 +84,6 @@ export class FormComponent implements OnInit {
     const task = this.storage.upload(filePath, file);
     this.uploadPercent = task.percentageChanges();
     task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
-
   }
 
 
@@ -96,7 +95,7 @@ export class FormComponent implements OnInit {
     this.paciente.dni = '';
     this.paciente.nacimiento = '';
     this.paciente.sexo = '';
-    this.paciente = null;
+    this.paciente.id = '';
   }
 
 }

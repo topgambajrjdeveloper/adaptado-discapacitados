@@ -4,7 +4,7 @@
   </mat-card>
   <br /><br />
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
       <mat-card>
         <h6 class="border-bottom border-gray mb-3">Empleados de Clinica RD</h6>
             <div class="card mb-3" *ngFor="let empleado of empleado">
@@ -13,7 +13,7 @@
                   <h5 class="card-title">Num. de empleado: {{ empleado.numeroEmpleado }}</h5>
                   <h6 class="card-subtitle text-muted">Tipo de especialista: {{ empleado.tipoEspecialista }}</h6>
                 </div>
-                <img style="height: 100px; width: 100px;" *ngIf="!photoUrl" [src]="photoUrl " alt="imagen de perfil">
+                <img style="height: 100px; width: 100px;" [src]="empleado.photoUrl " alt="imagen de perfil">
                 <div class="card-body">
                   <p class="card-text">{{ empleado.domicilio }}</p>
                 </div>

@@ -67,7 +67,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
   onView(element) {
     this.dataApi.getOnePaciente(element);
     console.log(element);
-    //this.router.navigate(['/paciente/ficha-paciente', element.id]);
+    // this.router.navigate(['/paciente/ficha-paciente', element.id]);
   }
 
   onSubmitPaciente({value}: {value: Pacientes}) {
@@ -81,7 +81,7 @@ export class ListaPacienteComponent implements OnInit, AfterViewInit {
 
   getCurrentUser() {}
 
-  onPreUpdateBook(paciente: Pacientes) {
+  onPreUpdatePaciente(paciente: Pacientes) {
     console.log('Paciente', paciente);
     this.dataApi.selectedPaciente = Object.assign({}, paciente);
   }
